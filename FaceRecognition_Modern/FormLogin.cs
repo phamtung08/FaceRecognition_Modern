@@ -1,5 +1,4 @@
 ﻿using Microsoft.Data.SqlClient;
-using System.Drawing.Drawing2D;
 
 namespace FaceRecognition_Modern
 {
@@ -12,7 +11,6 @@ namespace FaceRecognition_Modern
 
         private void FormLogin_Load(object sender, EventArgs e)
         {
-            // Tạo table nếu chưa có
             DatabaseHelper.EnsureAuthTableExists();
         }
 
@@ -42,14 +40,27 @@ namespace FaceRecognition_Modern
                 lblError.Text = $"Dang nhap thanh cong! Role: {role}";
                 lblError.ForeColor = Color.FromArgb(0, 200, 100);
 
-                // Mở Form1 và đóng login
                 var form1 = new Form1();
-                form1.Show();
                 this.Hide();
+                form1.Show();
+
+                // Khi Form1 đóng → kiểm tra có phải đăng xuất không
                 form1.FormClosed += (s, ev) =>
                 {
-                    UserSession.Clear();
-                    this.Close();
+                    if (!UserSession.IsLoggedIn)
+                    {
+                        // Đăng xuất → hiện lại FormLogin
+                        txtPassword.Clear();
+                        btnLogin.Enabled = true;
+                        lblError.Text = "Da dang xuat. Vui long dang nhap lai.";
+                        lblError.ForeColor = Color.FromArgb(255, 180, 0);
+                        this.Show();
+                    }
+                    else
+                    {
+                        // Đóng app bình thường
+                        this.Close();
+                    }
                 };
             }
             else
@@ -62,7 +73,6 @@ namespace FaceRecognition_Modern
             }
         }
 
-        // Nhấn Enter để login
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == Keys.Enter)
@@ -71,11 +81,6 @@ namespace FaceRecognition_Modern
                 return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
-        }
-
-        private void lblDefaultHint_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

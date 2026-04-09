@@ -289,6 +289,20 @@ namespace FaceRecognition_Modern
             f.Show();
         }
 
+        private void BtnLogout_Click(object sender, EventArgs e)
+        {
+            var confirm = MessageBox.Show(
+                "Ban co muon dang xuat khong?",
+                "Dang xuat", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (confirm == DialogResult.Yes)
+            {
+                StopCamera();
+                UserSession.Clear(); // Xóa session → FormLogin sẽ tự hiện lại
+                this.Close();
+            }
+        }
+
         private void ShowNoPermission()
         {
             MessageBox.Show(
@@ -342,7 +356,7 @@ namespace FaceRecognition_Modern
             CvInvoke.EqualizeHist(gray, gray);
 
             var faces = faceCascade!.DetectMultiScale(
-                gray, 1.1, 4, new System.Drawing.Size(50, 50));
+                gray, 1.05, 3, new System.Drawing.Size(30, 30));
 
             if (faces.Length == 0)
             {

@@ -21,6 +21,7 @@
         private System.Windows.Forms.Button btnNavTest;
         private System.Windows.Forms.Button btnNavChart;
         private System.Windows.Forms.Button btnNavManage;
+        private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Label lblNameHint;
         private System.Windows.Forms.TextBox txtPersonName;
         private System.Windows.Forms.Button btnSetName;
@@ -38,6 +39,7 @@
         {
             panelNav = new Panel();
             btnNavManage = new Button();
+            btnLogout = new Button();
             btnNavChart = new Button();
             btnNavTest = new Button();
             btnNavAttendance = new Button();
@@ -69,6 +71,7 @@
             // 
             panelNav.BackColor = Color.FromArgb(18, 18, 28);
             panelNav.Controls.Add(btnNavManage);
+            panelNav.Controls.Add(btnLogout);
             panelNav.Controls.Add(btnNavChart);
             panelNav.Controls.Add(btnNavTest);
             panelNav.Controls.Add(btnNavAttendance);
@@ -79,7 +82,7 @@
             panelNav.Dock = DockStyle.Top;
             panelNav.Location = new Point(0, 0);
             panelNav.Name = "panelNav";
-            panelNav.Size = new Size(1070, 52);
+            panelNav.Size = new Size(1095, 52);
             panelNav.TabIndex = 3;
             // 
             // btnNavManage
@@ -100,6 +103,24 @@
             btnNavManage.UseVisualStyleBackColor = false;
             btnNavManage.Click += menuManageAccounts_Click;
             // 
+            // btnLogout
+            // 
+            btnLogout.BackColor = Color.FromArgb(18, 18, 28);
+            btnLogout.Cursor = Cursors.Hand;
+            btnLogout.Dock = DockStyle.Right;
+            btnLogout.FlatAppearance.BorderSize = 0;
+            btnLogout.FlatAppearance.MouseOverBackColor = Color.FromArgb(60, 20, 20);
+            btnLogout.FlatStyle = FlatStyle.Flat;
+            btnLogout.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnLogout.ForeColor = Color.FromArgb(255, 100, 100);
+            btnLogout.Location = new Point(995, 0);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(100, 52);
+            btnLogout.TabIndex = 1;
+            btnLogout.Text = "Dang xuat";
+            btnLogout.UseVisualStyleBackColor = false;
+            btnLogout.Click += BtnLogout_Click;
+            // 
             // btnNavChart
             // 
             btnNavChart.BackColor = Color.FromArgb(18, 18, 28);
@@ -113,7 +134,7 @@
             btnNavChart.Location = new Point(770, 0);
             btnNavChart.Name = "btnNavChart";
             btnNavChart.Size = new Size(100, 52);
-            btnNavChart.TabIndex = 1;
+            btnNavChart.TabIndex = 2;
             btnNavChart.Text = "Bieu do";
             btnNavChart.UseVisualStyleBackColor = false;
             btnNavChart.Click += menuChart_Click;
@@ -131,7 +152,7 @@
             btnNavTest.Location = new Point(670, 0);
             btnNavTest.Name = "btnNavTest";
             btnNavTest.Size = new Size(100, 52);
-            btnNavTest.TabIndex = 2;
+            btnNavTest.TabIndex = 3;
             btnNavTest.Text = "Kiem tra";
             btnNavTest.UseVisualStyleBackColor = false;
             btnNavTest.Click += menuTest_Click;
@@ -149,7 +170,7 @@
             btnNavAttendance.Location = new Point(560, 0);
             btnNavAttendance.Name = "btnNavAttendance";
             btnNavAttendance.Size = new Size(110, 52);
-            btnNavAttendance.TabIndex = 3;
+            btnNavAttendance.TabIndex = 4;
             btnNavAttendance.Text = "Diem danh";
             btnNavAttendance.UseVisualStyleBackColor = false;
             btnNavAttendance.Click += menuAttendance_Click;
@@ -167,7 +188,7 @@
             btnNavRecognize.Location = new Point(450, 0);
             btnNavRecognize.Name = "btnNavRecognize";
             btnNavRecognize.Size = new Size(110, 52);
-            btnNavRecognize.TabIndex = 4;
+            btnNavRecognize.TabIndex = 5;
             btnNavRecognize.Text = "Nhan dien";
             btnNavRecognize.UseVisualStyleBackColor = false;
             btnNavRecognize.Click += menuRecognize_Click;
@@ -185,7 +206,7 @@
             btnNavTrain.Location = new Point(330, 0);
             btnNavTrain.Name = "btnNavTrain";
             btnNavTrain.Size = new Size(120, 52);
-            btnNavTrain.TabIndex = 5;
+            btnNavTrain.TabIndex = 6;
             btnNavTrain.Text = "Train Model";
             btnNavTrain.UseVisualStyleBackColor = false;
             btnNavTrain.Click += menuTrain_Click;
@@ -203,7 +224,7 @@
             btnNavCapture.Location = new Point(200, 0);
             btnNavCapture.Name = "btnNavCapture";
             btnNavCapture.Size = new Size(130, 52);
-            btnNavCapture.TabIndex = 6;
+            btnNavCapture.TabIndex = 7;
             btnNavCapture.Text = "Thu thap anh";
             btnNavCapture.UseVisualStyleBackColor = false;
             // 
@@ -215,7 +236,7 @@
             lblAppTitle.Location = new Point(0, 0);
             lblAppTitle.Name = "lblAppTitle";
             lblAppTitle.Size = new Size(200, 52);
-            lblAppTitle.TabIndex = 7;
+            lblAppTitle.TabIndex = 8;
             lblAppTitle.Text = "  FaceRecognition";
             lblAppTitle.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -227,7 +248,7 @@
             panelCamera.Location = new Point(0, 52);
             panelCamera.Name = "panelCamera";
             panelCamera.Padding = new Padding(10, 8, 10, 8);
-            panelCamera.Size = new Size(1070, 476);
+            panelCamera.Size = new Size(1095, 476);
             panelCamera.TabIndex = 0;
             // 
             // picCamera
@@ -236,7 +257,7 @@
             picCamera.Dock = DockStyle.Fill;
             picCamera.Location = new Point(10, 8);
             picCamera.Name = "picCamera";
-            picCamera.Size = new Size(1050, 460);
+            picCamera.Size = new Size(1075, 460);
             picCamera.SizeMode = PictureBoxSizeMode.Zoom;
             picCamera.TabIndex = 0;
             picCamera.TabStop = false;
@@ -253,7 +274,7 @@
             panelCapture.Location = new Point(0, 572);
             panelCapture.Name = "panelCapture";
             panelCapture.Padding = new Padding(12, 8, 12, 8);
-            panelCapture.Size = new Size(1070, 48);
+            panelCapture.Size = new Size(1095, 48);
             panelCapture.TabIndex = 2;
             // 
             // lblCount
@@ -264,7 +285,7 @@
             lblCount.Location = new Point(394, 8);
             lblCount.Name = "lblCount";
             lblCount.Padding = new Padding(10, 0, 0, 0);
-            lblCount.Size = new Size(664, 32);
+            lblCount.Size = new Size(689, 32);
             lblCount.TabIndex = 0;
             lblCount.Text = "Da luu: 0 anh";
             lblCount.TextAlign = ContentAlignment.MiddleLeft;
@@ -339,7 +360,7 @@
             panelResult.Location = new Point(0, 528);
             panelResult.Name = "panelResult";
             panelResult.Padding = new Padding(16, 0, 16, 0);
-            panelResult.Size = new Size(1070, 44);
+            panelResult.Size = new Size(1095, 44);
             panelResult.TabIndex = 1;
             // 
             // lblResult
@@ -349,7 +370,7 @@
             lblResult.ForeColor = Color.FromArgb(150, 150, 180);
             lblResult.Location = new Point(38, 0);
             lblResult.Name = "lblResult";
-            lblResult.Size = new Size(826, 44);
+            lblResult.Size = new Size(851, 44);
             lblResult.TabIndex = 0;
             lblResult.Text = "Nhan Start de bat dau";
             lblResult.TextAlign = ContentAlignment.MiddleLeft;
@@ -376,7 +397,7 @@
             btnStop.FlatStyle = FlatStyle.Flat;
             btnStop.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnStop.ForeColor = Color.White;
-            btnStop.Location = new Point(864, 0);
+            btnStop.Location = new Point(889, 0);
             btnStop.Name = "btnStop";
             btnStop.Size = new Size(90, 44);
             btnStop.TabIndex = 2;
@@ -393,7 +414,7 @@
             btnStart.FlatStyle = FlatStyle.Flat;
             btnStart.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnStart.ForeColor = Color.White;
-            btnStart.Location = new Point(954, 0);
+            btnStart.Location = new Point(979, 0);
             btnStart.Name = "btnStart";
             btnStart.Size = new Size(100, 44);
             btnStart.TabIndex = 3;
@@ -406,7 +427,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(10, 10, 18);
-            ClientSize = new Size(1070, 620);
+            ClientSize = new Size(1095, 620);
             Controls.Add(panelCamera);
             Controls.Add(panelResult);
             Controls.Add(panelCapture);
