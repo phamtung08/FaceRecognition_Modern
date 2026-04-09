@@ -9,6 +9,6 @@ namespace FaceRecognition_Modern
 
             // Dùng ApplicationContext để app không thoát khi Form1 đóng
             Application.Run(new FormLogin());
-        }
+        } 
     }
 }

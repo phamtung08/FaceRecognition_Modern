@@ -110,7 +110,7 @@ namespace FaceRecognition_Modern
                         CvInvoke.CvtColor(frame, gray, ColorConversion.Bgr2Gray);
                         CvInvoke.EqualizeHist(gray, gray);
 
-                        var faces = faceCascade!.DetectMultiScale(
+                        var faces = faceCascade!.DetectMultiScale( 
                             gray, 1.05, 3, new Size(30, 30));
 
                         Bitmap bmp = frame.ToBitmap();
