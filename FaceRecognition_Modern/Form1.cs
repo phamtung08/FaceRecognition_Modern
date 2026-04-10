@@ -152,7 +152,7 @@ namespace FaceRecognition_Modern
                         CvInvoke.EqualizeHist(gray, gray);
 
                         var faces = faceCascade!.DetectMultiScale(
-                            gray, 1.1, 4, new Size(50, 50));
+                            gray, 1.05, 3, new Size(30, 30));
 
                         Bitmap bmp = frame.ToBitmap();
                         using (Graphics g = Graphics.FromImage(bmp))
