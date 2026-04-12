@@ -38,7 +38,8 @@ namespace FaceRecognition_Modern
 
             faceCascade = new CascadeClassifier(cascadePath);
             SetResult($"Xin chao {UserSession.Username} ({UserSession.Role})",
-                Color.FromArgb(0, 200, 100));
+                System.Drawing.Color.FromArgb(21, 101, 192));
+            if (!IsDisposed) lblUserInfo.Text = $"{UserSession.Username} | {UserSession.Role}  ";
 
             // ── Phân quyền: ẩn chức năng theo role ───────────────────────────
             ApplyRolePermissions();
@@ -152,7 +153,7 @@ namespace FaceRecognition_Modern
                         CvInvoke.EqualizeHist(gray, gray);
 
                         var faces = faceCascade!.DetectMultiScale(
-                            gray, 1.05, 3, new Size(30, 30));
+                            gray, 1.1, 4, new Size(50, 50));
 
                         Bitmap bmp = frame.ToBitmap();
                         using (Graphics g = Graphics.FromImage(bmp))
@@ -356,7 +357,7 @@ namespace FaceRecognition_Modern
             CvInvoke.EqualizeHist(gray, gray);
 
             var faces = faceCascade!.DetectMultiScale(
-                gray, 1.05, 3, new System.Drawing.Size(30, 30));
+                gray, 1.1, 4, new System.Drawing.Size(50, 50));
 
             if (faces.Length == 0)
             {

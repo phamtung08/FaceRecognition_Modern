@@ -4,7 +4,8 @@
     {
         private System.ComponentModel.IContainer components = null;
 
-        private System.Windows.Forms.Panel panelMain;
+        private System.Windows.Forms.Panel panelHeader;
+        private System.Windows.Forms.Panel panelForm;
         private System.Windows.Forms.Label lblAppName;
         private System.Windows.Forms.Label lblSubtitle;
         private System.Windows.Forms.Label lblUsernameHint;
@@ -13,6 +14,8 @@
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Label lblError;
+        private System.Windows.Forms.Label lblDefaultHint;
+        private System.Windows.Forms.Label lblVersion;
 
         protected override void Dispose(bool disposing)
         {
@@ -23,142 +26,143 @@
 
         private void InitializeComponent()
         {
-            panelMain = new Panel();
-            lblAppName = new Label();
-            lblSubtitle = new Label();
-            lblUsernameHint = new Label();
-            txtUsername = new TextBox();
-            lblPasswordHint = new Label();
-            txtPassword = new TextBox();
-            btnLogin = new Button();
-            lblError = new Label();
-            panelMain.SuspendLayout();
-            SuspendLayout();
-            // 
-            // panelMain
-            // 
-            panelMain.BackColor = Color.FromArgb(22, 22, 34);
-            panelMain.Controls.Add(lblAppName);
-            panelMain.Controls.Add(lblSubtitle);
-            panelMain.Controls.Add(lblUsernameHint);
-            panelMain.Controls.Add(txtUsername);
-            panelMain.Controls.Add(lblPasswordHint);
-            panelMain.Controls.Add(txtPassword);
-            panelMain.Controls.Add(btnLogin);
-            panelMain.Controls.Add(lblError);
-            panelMain.Location = new Point(140, 80);
-            panelMain.Name = "panelMain";
-            panelMain.Size = new Size(360, 440);
-            panelMain.TabIndex = 0;
-            // 
-            // lblAppName
-            // 
-            lblAppName.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            lblAppName.ForeColor = Color.FromArgb(0, 230, 118);
-            lblAppName.Location = new Point(0, 30);
-            lblAppName.Name = "lblAppName";
-            lblAppName.Size = new Size(360, 40);
-            lblAppName.TabIndex = 0;
-            lblAppName.Text = "FaceRecognition";
-            lblAppName.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // lblSubtitle
-            // 
-            lblSubtitle.Font = new Font("Segoe UI", 9F);
-            lblSubtitle.ForeColor = Color.FromArgb(120, 120, 150);
-            lblSubtitle.Location = new Point(0, 72);
-            lblSubtitle.Name = "lblSubtitle";
-            lblSubtitle.Size = new Size(360, 24);
-            lblSubtitle.TabIndex = 1;
-            lblSubtitle.Text = "He thong diem danh khuon mat";
-            lblSubtitle.TextAlign = ContentAlignment.MiddleCenter;
-            // 
+            this.panelHeader = new System.Windows.Forms.Panel();
+            this.panelForm = new System.Windows.Forms.Panel();
+            this.lblAppName = new System.Windows.Forms.Label();
+            this.lblSubtitle = new System.Windows.Forms.Label();
+            this.lblUsernameHint = new System.Windows.Forms.Label();
+            this.lblPasswordHint = new System.Windows.Forms.Label();
+            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.btnLogin = new System.Windows.Forms.Button();
+            this.lblError = new System.Windows.Forms.Label();
+            this.lblDefaultHint = new System.Windows.Forms.Label();
+            this.lblVersion = new System.Windows.Forms.Label();
+
+            this.panelHeader.SuspendLayout();
+            this.panelForm.SuspendLayout();
+            this.SuspendLayout();
+
+            // ── panelHeader (xanh dương) ──────────────────────────────────────
+            this.panelHeader.Location = new System.Drawing.Point(120, 60);
+            this.panelHeader.Size = new System.Drawing.Size(400, 90);
+            this.panelHeader.BackColor = System.Drawing.Color.FromArgb(21, 101, 192);
+
+            this.lblAppName.Text = "FaceRecognition Pro";
+            this.lblAppName.Location = new System.Drawing.Point(0, 12);
+            this.lblAppName.Size = new System.Drawing.Size(400, 36);
+            this.lblAppName.Font = new System.Drawing.Font("Segoe UI", 16f, System.Drawing.FontStyle.Bold);
+            this.lblAppName.ForeColor = System.Drawing.Color.White;
+            this.lblAppName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+
+            this.lblSubtitle.Text = "He thong Nhan dien & Diem danh Khuon mat";
+            this.lblSubtitle.Location = new System.Drawing.Point(0, 52);
+            this.lblSubtitle.Size = new System.Drawing.Size(400, 26);
+            this.lblSubtitle.Font = new System.Drawing.Font("Segoe UI", 9f);
+            this.lblSubtitle.ForeColor = System.Drawing.Color.FromArgb(187, 222, 251);
+            this.lblSubtitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+
+            this.panelHeader.Controls.Add(this.lblAppName);
+            this.panelHeader.Controls.Add(this.lblSubtitle);
+
+            // ── panelForm (trắng) ─────────────────────────────────────────────
+            this.panelForm.Location = new System.Drawing.Point(120, 150);
+            this.panelForm.Size = new System.Drawing.Size(400, 300);
+            this.panelForm.BackColor = System.Drawing.Color.White;
+
             // lblUsernameHint
-            // 
-            lblUsernameHint.Font = new Font("Segoe UI", 8.5F);
-            lblUsernameHint.ForeColor = Color.FromArgb(150, 150, 180);
-            lblUsernameHint.Location = new Point(30, 120);
-            lblUsernameHint.Name = "lblUsernameHint";
-            lblUsernameHint.Size = new Size(300, 20);
-            lblUsernameHint.TabIndex = 2;
-            lblUsernameHint.Text = "Ten dang nhap";
-            // 
+            this.lblUsernameHint.Text = "Ten dang nhap";
+            this.lblUsernameHint.Location = new System.Drawing.Point(40, 30);
+            this.lblUsernameHint.Size = new System.Drawing.Size(320, 18);
+            this.lblUsernameHint.Font = new System.Drawing.Font("Segoe UI", 8.5f, System.Drawing.FontStyle.Bold);
+            this.lblUsernameHint.ForeColor = System.Drawing.Color.FromArgb(96, 125, 139);
+
             // txtUsername
-            // 
-            txtUsername.BackColor = Color.FromArgb(32, 32, 48);
-            txtUsername.BorderStyle = BorderStyle.FixedSingle;
-            txtUsername.Font = new Font("Segoe UI", 11F);
-            txtUsername.ForeColor = Color.White;
-            txtUsername.Location = new Point(30, 144);
-            txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(300, 32);
-            txtUsername.TabIndex = 3;
-            txtUsername.Text = "admin";
-            // 
+            this.txtUsername.Location = new System.Drawing.Point(40, 52);
+            this.txtUsername.Size = new System.Drawing.Size(320, 32);
+            this.txtUsername.Font = new System.Drawing.Font("Segoe UI", 10f);
+            this.txtUsername.BackColor = System.Drawing.Color.FromArgb(245, 245, 245);
+            this.txtUsername.ForeColor = System.Drawing.Color.FromArgb(33, 33, 33);
+            this.txtUsername.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtUsername.Text = "admin";
+
             // lblPasswordHint
-            // 
-            lblPasswordHint.Font = new Font("Segoe UI", 8.5F);
-            lblPasswordHint.ForeColor = Color.FromArgb(150, 150, 180);
-            lblPasswordHint.Location = new Point(30, 196);
-            lblPasswordHint.Name = "lblPasswordHint";
-            lblPasswordHint.Size = new Size(300, 20);
-            lblPasswordHint.TabIndex = 4;
-            lblPasswordHint.Text = "Mat khau";
-            // 
+            this.lblPasswordHint.Text = "Mat khau";
+            this.lblPasswordHint.Location = new System.Drawing.Point(40, 96);
+            this.lblPasswordHint.Size = new System.Drawing.Size(320, 18);
+            this.lblPasswordHint.Font = new System.Drawing.Font("Segoe UI", 8.5f, System.Drawing.FontStyle.Bold);
+            this.lblPasswordHint.ForeColor = System.Drawing.Color.FromArgb(96, 125, 139);
+
             // txtPassword
-            // 
-            txtPassword.BackColor = Color.FromArgb(32, 32, 48);
-            txtPassword.BorderStyle = BorderStyle.FixedSingle;
-            txtPassword.Font = new Font("Segoe UI", 11F);
-            txtPassword.ForeColor = Color.White;
-            txtPassword.Location = new Point(30, 220);
-            txtPassword.Name = "txtPassword";
-            txtPassword.PasswordChar = '●';
-            txtPassword.Size = new Size(300, 32);
-            txtPassword.TabIndex = 5;
-            // 
+            this.txtPassword.Location = new System.Drawing.Point(40, 118);
+            this.txtPassword.Size = new System.Drawing.Size(320, 32);
+            this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 10f);
+            this.txtPassword.BackColor = System.Drawing.Color.FromArgb(245, 245, 245);
+            this.txtPassword.ForeColor = System.Drawing.Color.FromArgb(33, 33, 33);
+            this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPassword.PasswordChar = '●';
+
             // btnLogin
-            // 
-            btnLogin.BackColor = Color.FromArgb(0, 180, 90);
-            btnLogin.Cursor = Cursors.Hand;
-            btnLogin.FlatAppearance.BorderSize = 0;
-            btnLogin.FlatStyle = FlatStyle.Flat;
-            btnLogin.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btnLogin.ForeColor = Color.White;
-            btnLogin.Location = new Point(30, 280);
-            btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(300, 44);
-            btnLogin.TabIndex = 6;
-            btnLogin.Text = "Dang nhap";
-            btnLogin.UseVisualStyleBackColor = false;
-            btnLogin.Click += BtnLogin_Click;
-            // 
+            this.btnLogin.Text = "DANG NHAP";
+            this.btnLogin.Location = new System.Drawing.Point(40, 168);
+            this.btnLogin.Size = new System.Drawing.Size(320, 40);
+            this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 10f, System.Drawing.FontStyle.Bold);
+            this.btnLogin.BackColor = System.Drawing.Color.FromArgb(21, 101, 192);
+            this.btnLogin.ForeColor = System.Drawing.Color.White;
+            this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogin.FlatAppearance.BorderSize = 0;
+            this.btnLogin.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLogin.Click += new System.EventHandler(this.BtnLogin_Click);
+
             // lblError
-            // 
-            lblError.Font = new Font("Segoe UI", 9F);
-            lblError.ForeColor = Color.FromArgb(255, 80, 80);
-            lblError.Location = new Point(30, 336);
-            lblError.Name = "lblError";
-            lblError.Size = new Size(300, 24);
-            lblError.TabIndex = 7;
-            lblError.TextAlign = ContentAlignment.MiddleCenter;
-            // 
+            this.lblError.Text = "";
+            this.lblError.Location = new System.Drawing.Point(40, 218);
+            this.lblError.Size = new System.Drawing.Size(320, 22);
+            this.lblError.Font = new System.Drawing.Font("Segoe UI", 9f);
+            this.lblError.ForeColor = System.Drawing.Color.FromArgb(211, 47, 47);
+            this.lblError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+
+            // lblDefaultHint
+            this.lblDefaultHint.Text = "Mac dinh: admin / admin123";
+            this.lblDefaultHint.Location = new System.Drawing.Point(40, 252);
+            this.lblDefaultHint.Size = new System.Drawing.Size(320, 18);
+            this.lblDefaultHint.Font = new System.Drawing.Font("Segoe UI", 8f);
+            this.lblDefaultHint.ForeColor = System.Drawing.Color.FromArgb(189, 189, 189);
+            this.lblDefaultHint.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+
+            this.panelForm.Controls.Add(this.lblUsernameHint);
+            this.panelForm.Controls.Add(this.txtUsername);
+            this.panelForm.Controls.Add(this.lblPasswordHint);
+            this.panelForm.Controls.Add(this.txtPassword);
+            this.panelForm.Controls.Add(this.btnLogin);
+            this.panelForm.Controls.Add(this.lblError);
+            this.panelForm.Controls.Add(this.lblDefaultHint);
+
+            // lblVersion (footer)
+            this.lblVersion.Text = "v1.0 — FaceRecognition Modern";
+            this.lblVersion.Location = new System.Drawing.Point(0, 468);
+            this.lblVersion.Size = new System.Drawing.Size(640, 20);
+            this.lblVersion.Font = new System.Drawing.Font("Segoe UI", 8f);
+            this.lblVersion.ForeColor = System.Drawing.Color.FromArgb(189, 189, 189);
+            this.lblVersion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+
             // FormLogin
-            // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(12, 12, 20);
-            ClientSize = new Size(640, 600);
-            Controls.Add(panelMain);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            MaximizeBox = false;
-            Name = "FormLogin";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "Dang nhap — FaceRecognition";
-            Load += FormLogin_Load;
-            panelMain.ResumeLayout(false);
-            panelMain.PerformLayout();
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(640, 500);
+            this.BackColor = System.Drawing.Color.FromArgb(237, 241, 245);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "FaceRecognition Pro — Dang nhap";
+            this.Controls.Add(this.panelHeader);
+            this.Controls.Add(this.panelForm);
+            this.Controls.Add(this.lblVersion);
+            this.Load += new System.EventHandler(this.FormLogin_Load);
+
+            this.panelHeader.ResumeLayout(false);
+            this.panelForm.ResumeLayout(false);
+            this.ResumeLayout(false);
         }
     }
 }
