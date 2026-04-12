@@ -7,33 +7,34 @@ namespace FaceRecognition_Modern
 {
     public partial class Form2 : Form
     {
-        private System.Windows.Forms.Button btnBack;
-
         public Form2()
         {
             InitializeComponent();
-            InitBackButton();
+            AddBackButton();
         }
 
-        private void InitBackButton()
+        private void AddBackButton()
         {
-            btnBack = new System.Windows.Forms.Button
+            var btn = new System.Windows.Forms.Button
             {
-                Text = "<- Quay lai Form1",
-                Location = new System.Drawing.Point(12, 444),
-                Size = new System.Drawing.Size(560, 36),
+                Text = "Quay lai Form1",
+                Location = new System.Drawing.Point(16, 56),
+                Size = new System.Drawing.Size(552, 30),
                 Font = new System.Drawing.Font("Segoe UI", 9f),
-                BackColor = System.Drawing.Color.FromArgb(40, 40, 60),
-                ForeColor = System.Drawing.Color.FromArgb(150, 150, 180),
+                BackColor = System.Drawing.Color.FromArgb(245, 245, 245),
+                ForeColor = System.Drawing.Color.FromArgb(96, 125, 139),
                 FlatStyle = System.Windows.Forms.FlatStyle.Flat,
                 Cursor = System.Windows.Forms.Cursors.Hand
             };
-            btnBack.FlatAppearance.BorderSize = 0;
-            btnBack.Click += (s, e) => this.Close();
-            this.Controls.Add(btnBack);
-            this.ClientSize = new System.Drawing.Size(584, 492);
-        }
+            btn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(207, 216, 220);
+            btn.FlatAppearance.BorderSize = 1;
+            btn.Click += (s, e) => this.Close();
 
+            // Thêm vào panelBottom
+            var panelBottom = this.Controls.OfType<System.Windows.Forms.Panel>()
+                .FirstOrDefault(p => p.Dock == System.Windows.Forms.DockStyle.Bottom);
+            panelBottom?.Controls.Add(btn);
+        }
 
         private void Form2_Load(object sender, EventArgs e) { }
 
@@ -114,7 +115,6 @@ namespace FaceRecognition_Modern
                     this.Invoke(new Action(() =>
                         listLog.Items.Add($"Dang train EigenFaceRecognizer voi {images.Count} anh...")));
 
-                    // Dùng VectorOfMat và VectorOfInt
                     var recognizer = new EigenFaceRecognizer();
                     using var vecMats = new VectorOfMat(images.ToArray());
                     using var vecInts = new VectorOfInt(labels.ToArray());
@@ -133,7 +133,7 @@ namespace FaceRecognition_Modern
                         listLog.Items.Add($"Model luu tai: {modelPath}");
                         btnTrain.Enabled = true;
                         MessageBox.Show(
-                            $"Train thanh cong!\n{images.Count} anh | {labelToName.Count} nguoi\n\nNhan 'Quay lai' roi mo Form3/Form4 de nhan dien.",
+                            $"Train thanh cong!\n{images.Count} anh | {labelToName.Count} nguoi",
                             "Thanh cong", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }));
                 }
