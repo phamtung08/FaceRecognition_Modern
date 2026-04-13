@@ -18,25 +18,11 @@ namespace FaceRecognition_Modern
         public Form3()
         {
             InitializeComponent();
-            AddBackButton();
         }
 
-        private void AddBackButton()
+        private void BtnBack_Click(object sender, EventArgs e)
         {
-            var btn = new System.Windows.Forms.Button
-            {
-                Text = "<- Quay lai Form1",
-                Dock = System.Windows.Forms.DockStyle.Bottom,
-                Height = 36,
-                Font = new System.Drawing.Font("Segoe UI", 9f),
-                BackColor = System.Drawing.Color.FromArgb(40, 40, 60),
-                ForeColor = System.Drawing.Color.FromArgb(150, 150, 180),
-                FlatStyle = System.Windows.Forms.FlatStyle.Flat,
-                Cursor = System.Windows.Forms.Cursors.Hand
-            };
-            btn.FlatAppearance.BorderSize = 0;
-            btn.Click += (s, e) => this.Close();
-            this.Controls.Add(btn);
+            this.Close();
         }
 
         private void Form3_Load(object sender, EventArgs e)
@@ -79,7 +65,7 @@ namespace FaceRecognition_Modern
             recognizer.Read(modelPath);
 
             lblStatus.Text = $"Model da load: {_labelToName.Count} nguoi";
-            lblStatus.ForeColor = Color.FromArgb(0, 230, 118);
+            lblStatus.ForeColor = System.Drawing.Color.FromArgb(46, 125, 50);
 
             capture = new VideoCapture(0);
             capture.ImageGrabbed += (s, ev) =>
@@ -110,7 +96,7 @@ namespace FaceRecognition_Modern
                         CvInvoke.CvtColor(frame, gray, ColorConversion.Bgr2Gray);
                         CvInvoke.EqualizeHist(gray, gray);
 
-                        var faces = faceCascade!.DetectMultiScale( 
+                        var faces = faceCascade!.DetectMultiScale(
                             gray, 1.05, 3, new Size(30, 30));
 
                         Bitmap bmp = frame.ToBitmap();
@@ -122,7 +108,7 @@ namespace FaceRecognition_Modern
                             foreach (var face in faces)
                             {
                                 string label = "Unknown";
-                                Color boxColor = Color.FromArgb(255, 60, 60);
+                                Color boxColor = Color.FromArgb(211, 47, 47);
 
                                 if (recognizer != null)
                                 {
@@ -138,14 +124,14 @@ namespace FaceRecognition_Modern
                                         && _labelToName.ContainsKey(result.Label))
                                     {
                                         label = _labelToName[result.Label];
-                                        boxColor = Color.FromArgb(0, 220, 100);
+                                        boxColor = Color.FromArgb(46, 125, 50);
                                     }
 
                                     faceRoi.Dispose();
                                     resized.Dispose();
                                 }
 
-                                // Ve khung goc
+                                // Vẽ khung góc
                                 using var pen = new Pen(boxColor, 2);
                                 int c = 18;
                                 g.DrawLine(pen, face.X, face.Y, face.X + c, face.Y);
@@ -157,7 +143,7 @@ namespace FaceRecognition_Modern
                                 g.DrawLine(pen, face.Right - c, face.Bottom, face.Right, face.Bottom);
                                 g.DrawLine(pen, face.Right, face.Bottom - c, face.Right, face.Bottom);
 
-                                // Ve ten
+                                // Vẽ tên
                                 using var font = new Font("Segoe UI", 9f, FontStyle.Bold);
                                 SizeF textSize = g.MeasureString(label, font);
                                 float labelY = face.Bottom + 4;
@@ -169,9 +155,9 @@ namespace FaceRecognition_Modern
                                     var bgRect = new RectangleF(
                                         face.X, labelY, textSize.Width + 14, labelH);
 
-                                    using var bgBrush = new SolidBrush(Color.FromArgb(190, 10, 10, 10));
+                                    using var bgBrush = new SolidBrush(Color.FromArgb(220, 255, 255, 255));
                                     using var borderBrush = new SolidBrush(boxColor);
-                                    using var textBrush = new SolidBrush(Color.White);
+                                    using var textBrush = new SolidBrush(boxColor);
 
                                     g.FillRectangle(bgBrush, bgRect);
                                     g.FillRectangle(borderBrush,
@@ -184,7 +170,7 @@ namespace FaceRecognition_Modern
 
                         string faceInfo = faces.Length > 0
                             ? $"Phat hien: {faces.Length} khuon mat"
-                            : "Khong co khuon mat";
+                            : "Khong phat hien khuon mat";
 
                         if (!IsDisposed && picCamera.IsHandleCreated)
                         {
