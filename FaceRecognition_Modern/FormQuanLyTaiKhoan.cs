@@ -161,6 +161,11 @@
         }
 
         // ── Click vao row -> dien vao form ────────────────────────────────────
+        private void BtnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         private void DataGrid_SelectionChanged(object sender, EventArgs e)
         {
             if (dataGrid.SelectedRows.Count == 0) return;

@@ -1,5 +1,9 @@
-﻿using System.Drawing.Drawing2D;
-using System.IO.Pipelines;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace FaceRecognition_Modern
 {
@@ -11,52 +15,65 @@ namespace FaceRecognition_Modern
             AddBackButton();
         }
 
+        private void FormChart_Load(object sender, EventArgs e)
+        {
+            // 🔐 CHECK ROLE
+            if (UserSession.Role != "Admin" && UserSession.Role != "GiaoVien")
+            {
+                MessageBox.Show("Bạn không có quyền truy cập!", "Access Denied");
+                this.Close();
+                return;
+            }
+
+            lblUser.Text = $"Đăng nhập: {UserSession.Username} ({UserSession.Role})";
+            LoadCharts();
+        }
+
         private void AddBackButton()
         {
-            var btn = new System.Windows.Forms.Button
+            var btn = new Button
             {
-                Text = "<- Quay lai",
-                Dock = System.Windows.Forms.DockStyle.Bottom,
+                Text = "← Quay lại",
+                Dock = DockStyle.Bottom,
                 Height = 36,
-                Font = new System.Drawing.Font("Segoe UI", 9f),
-                BackColor = System.Drawing.Color.FromArgb(40, 40, 60),
-                ForeColor = System.Drawing.Color.FromArgb(150, 150, 180),
-                FlatStyle = System.Windows.Forms.FlatStyle.Flat,
-                Cursor = System.Windows.Forms.Cursors.Hand
+                Font = new Font("Segoe UI", 9f),
+                BackColor = Color.White,
+                ForeColor = Color.FromArgb(21, 101, 192),
+                FlatStyle = FlatStyle.Flat
             };
-            btn.FlatAppearance.BorderSize = 0;
+
+            btn.FlatAppearance.BorderColor = Color.FromArgb(200, 210, 230);
             btn.Click += (s, e) => this.Close();
             this.Controls.Add(btn);
         }
 
-        private void FormChart_Load(object sender, EventArgs e)
-        {
-            lblUser.Text = $"Dang nhap: {UserSession.Username} ({UserSession.Role})";
-            LoadCharts();
-        }
-
+        // ================= LOAD DATA =================
         private void LoadCharts()
         {
-            // Lấy dữ liệu
-            var weekData = DatabaseHelper.GetAttendanceByWeek();
-            int totalReg = DatabaseHelper.GetTotalRegistered();
-            int todayPresent = DatabaseHelper.GetTodayAttendanceCount();
-            int todayAbsent = totalReg - todayPresent;
-            if (todayAbsent < 0) todayAbsent = 0;
+            try
+            {
+                var weekData = DatabaseHelper.GetAttendanceByWeek() ?? new List<(DateTime, int)>();
 
-            // Cập nhật stats
-            lblTotalReg.Text = $"Tong da dang ky: {totalReg} nguoi";
-            lblTodayPresent.Text = $"Co mat hom nay: {todayPresent} nguoi";
-            lblTodayAbsent.Text = $"Vang hom nay:   {todayAbsent} nguoi";
+                int total = DatabaseHelper.GetTotalRegistered();
+                int present = DatabaseHelper.GetTodayAttendanceCount();
+                int absent = Math.Max(0, total - present);
 
-            // Vẽ biểu đồ cột
-            DrawBarChart(weekData);
+                // UI stats
+                lblTotalReg.Text = $"Tổng đăng ký: {total}";
+                lblTodayPresent.Text = $"Có mặt: {present}";
+                lblTodayAbsent.Text = $"Vắng: {absent}";
 
-            // Vẽ biểu đồ tròn
-            DrawPieChart(todayPresent, todayAbsent);
+                // DRAW
+                DrawBarChart(weekData);
+                DrawPieChart(present, absent);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tải dữ liệu: " + ex.Message);
+            }
         }
 
-        // ── Biểu đồ cột — số người điểm danh theo ngày ───────────────────────
+        // ================= BAR CHART =================
         private void DrawBarChart(List<(DateTime Date, int Count)> data)
         {
             int w = picBar.Width;
@@ -65,83 +82,64 @@ namespace FaceRecognition_Modern
 
             using var g = Graphics.FromImage(bmp);
             g.SmoothingMode = SmoothingMode.AntiAlias;
-            g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            g.Clear(System.Drawing.Color.FromArgb(16, 16, 26));
+            g.Clear(Color.White);
 
-            if (data.Count == 0)
+            if (data == null || data.Count == 0)
             {
-                using var noDataFont = new Font("Segoe UI", 10f);
-                using var noDataBrush = new SolidBrush(System.Drawing.Color.FromArgb(100, 100, 130));
-                g.DrawString("Chua co du lieu", noDataFont, noDataBrush,
-                    new PointF(w / 2f - 60, h / 2f - 10));
+                DrawNoData(g, w, h);
                 picBar.Image = bmp;
                 return;
             }
 
-            int maxCount = data.Max(d => d.Count);
-            if (maxCount == 0) maxCount = 1;
+            int max = Math.Max(1, data.Max(d => d.Count));
             int padding = 50;
+            int chartH = h - padding * 2;
             int chartW = w - padding * 2;
-            int chartH = h - padding * 2 - 20;
-            int barWidth = Math.Max(20, chartW / (data.Count * 2));
-            int gap = barWidth;
 
-            // Vẽ trục
-            using var axisPen = new Pen(System.Drawing.Color.FromArgb(60, 60, 80), 1);
-            using var axisFont = new Font("Segoe UI", 8f);
-            using var axisBr = new SolidBrush(System.Drawing.Color.FromArgb(120, 120, 150));
+            int barWidth = Math.Max(30, chartW / (data.Count * 2));
 
+            var axisPen = new Pen(Color.FromArgb(220, 220, 220));
+            var font = new Font("Segoe UI", 8);
+            var textBrush = new SolidBrush(Color.FromArgb(60, 60, 60));
+
+            // axis
             g.DrawLine(axisPen, padding, padding, padding, padding + chartH);
             g.DrawLine(axisPen, padding, padding + chartH, w - padding, padding + chartH);
 
-            // Vẽ đường lưới ngang
-            for (int i = 1; i <= 4; i++)
-            {
-                int y = padding + chartH - (chartH * i / 4);
-                g.DrawLine(axisPen, padding, y, w - padding, y);
-                int val = maxCount * i / 4;
-                g.DrawString(val.ToString(), axisFont, axisBr,
-                    new PointF(4, y - 8));
-            }
-
-            // Vẽ các cột
             for (int i = 0; i < data.Count; i++)
             {
-                int barH = (int)((double)data[i].Count / maxCount * chartH);
-                int x = padding + gap / 2 + i * (barWidth + gap);
+                int barH = (int)((double)data[i].Count / max * chartH);
+                int x = padding + i * (barWidth + 20);
                 int y = padding + chartH - barH;
 
-                // Cột gradient
-                using var barBrush = new SolidBrush(System.Drawing.Color.FromArgb(0, 180, 100));
-                g.FillRectangle(barBrush, x, y, barWidth, barH);
+                var rect = new Rectangle(x, y, barWidth, barH);
 
-                // Viền trên cột
-                using var topPen = new Pen(System.Drawing.Color.FromArgb(0, 230, 118), 2);
-                g.DrawLine(topPen, x, y, x + barWidth, y);
+                // gradient
+                using var brush = new LinearGradientBrush(rect,
+                    Color.FromArgb(21, 101, 192),
+                    Color.FromArgb(100, 160, 220),
+                    90f);
 
-                // Số trên cột
-                using var countBrush = new SolidBrush(System.Drawing.Color.White);
-                using var countFont = new Font("Segoe UI", 8f, FontStyle.Bold);
-                string countStr = data[i].Count.ToString();
-                g.DrawString(countStr, countFont, countBrush,
-                    new PointF(x + barWidth / 2f - 6, y - 18));
+                g.FillRectangle(brush, rect);
 
-                // Nhãn ngày dưới
-                string dateStr = data[i].Date.ToString("dd/MM");
-                g.DrawString(dateStr, axisFont, axisBr,
-                    new PointF(x + barWidth / 2f - 14, padding + chartH + 6));
+                // value
+                g.DrawString(data[i].Count.ToString(), font, textBrush, x, y - 18);
+
+                // date
+                g.DrawString(data[i].Date.ToString("dd/MM"), font, textBrush,
+                    x, padding + chartH + 5);
             }
 
-            // Tiêu đề
-            using var titleFont = new Font("Segoe UI", 10f, FontStyle.Bold);
-            using var titleBrush = new SolidBrush(System.Drawing.Color.FromArgb(0, 230, 118));
-            g.DrawString("So nguoi diem danh 7 ngay gan nhat",
-                titleFont, titleBrush, new PointF(padding, 8));
+            using var titleFont = new Font("Segoe UI", 10, FontStyle.Bold);
+            g.DrawString("Điểm danh 7 ngày gần nhất",
+                titleFont,
+                new SolidBrush(Color.FromArgb(21, 101, 192)),
+                new PointF(20, 10));
 
             picBar.Image = bmp;
         }
 
-        // ── Biểu đồ tròn — tỷ lệ có mặt / vắng ─────────────────────────────
+        // ================= PIE CHART =================
         private void DrawPieChart(int present, int absent)
         {
             int w = picPie.Width;
@@ -150,74 +148,62 @@ namespace FaceRecognition_Modern
 
             using var g = Graphics.FromImage(bmp);
             g.SmoothingMode = SmoothingMode.AntiAlias;
-            g.Clear(System.Drawing.Color.FromArgb(16, 16, 26));
+            g.Clear(Color.White);
 
             int total = present + absent;
+
             if (total == 0)
             {
-                using var noDataFont = new Font("Segoe UI", 10f);
-                using var noDataBrush = new SolidBrush(System.Drawing.Color.FromArgb(100, 100, 130));
-                g.DrawString("Chua co du lieu", noDataFont, noDataBrush,
-                    new PointF(w / 2f - 60, h / 2f - 10));
+                DrawNoData(g, w, h);
                 picPie.Image = bmp;
                 return;
             }
 
-            int cx = w / 2 - 20;
-            int cy = h / 2 + 10;
             int radius = Math.Min(w, h) / 2 - 40;
-            var pieRect = new Rectangle(cx - radius, cy - radius, radius * 2, radius * 2);
+            int cx = w / 2;
+            int cy = h / 2;
 
-            float presentPct = (float)present / total * 100f;
-            float absentPct = 100f - presentPct;
-            float startAngle = -90f;
-            float sweepPresent = 360f * present / total;
-            float sweepAbsent = 360f - sweepPresent;
+            var rect = new Rectangle(cx - radius, cy - radius, radius * 2, radius * 2);
 
-            // Vẽ phần có mặt
-            using var presentBrush = new SolidBrush(System.Drawing.Color.FromArgb(0, 200, 100));
-            g.FillPie(presentBrush, pieRect, startAngle, sweepPresent);
+            float sweep = 360f * present / total;
 
-            // Vẽ phần vắng
-            using var absentBrush = new SolidBrush(System.Drawing.Color.FromArgb(220, 60, 60));
-            g.FillPie(absentBrush, pieRect, startAngle + sweepPresent, sweepAbsent);
+            using var green = new SolidBrush(Color.FromArgb(56, 142, 60));
+            using var red = new SolidBrush(Color.FromArgb(211, 47, 47));
 
-            // Viền
-            using var borderPen = new Pen(System.Drawing.Color.FromArgb(16, 16, 26), 2);
-            g.DrawEllipse(borderPen, pieRect);
+            g.FillPie(green, rect, -90, sweep);
+            g.FillPie(red, rect, -90 + sweep, 360 - sweep);
 
-            // Legend
-            using var legendFont = new Font("Segoe UI", 9f);
-            using var whiteBrush = new SolidBrush(System.Drawing.Color.White);
-            using var greenBrush = new SolidBrush(System.Drawing.Color.FromArgb(0, 200, 100));
-            using var redBrush = new SolidBrush(System.Drawing.Color.FromArgb(220, 60, 60));
-            using var legendFont2 = new Font("Segoe UI", 9f, FontStyle.Bold);
+            // text center
+            using var font = new Font("Segoe UI", 11, FontStyle.Bold);
+            g.DrawString($"{present}/{total}", font,
+                new SolidBrush(Color.FromArgb(60, 60, 60)),
+                cx - 25, cy - 10);
 
-            int lx = w - 130;
-            g.FillRectangle(greenBrush, lx, 60, 14, 14);
-            g.DrawString($"Co mat: {presentPct:F1}%", legendFont, whiteBrush,
-                new PointF(lx + 20, 58));
-
-            g.FillRectangle(redBrush, lx, 84, 14, 14);
-            g.DrawString($"Vang: {absentPct:F1}%", legendFont, whiteBrush,
-                new PointF(lx + 20, 82));
-
-            // Số giữa
-            g.DrawString($"{present}/{total}", legendFont2, whiteBrush,
-                new PointF(cx - 18, cy - 10));
-
-            // Tiêu đề
-            using var titleFont = new Font("Segoe UI", 10f, FontStyle.Bold);
-            using var titleBrush = new SolidBrush(System.Drawing.Color.FromArgb(0, 230, 118));
-            g.DrawString("Ti le co mat hom nay", titleFont, titleBrush,
-                new PointF(10, 8));
+            // legend
+            using var smallFont = new Font("Segoe UI", 9);
+            g.DrawString($"Có mặt: {present}", smallFont, Brushes.Black, 10, 20);
+            g.DrawString($"Vắng: {absent}", smallFont, Brushes.Black, 10, 40);
 
             picPie.Image = bmp;
+        }
+
+        // ================= NO DATA =================
+        private void DrawNoData(Graphics g, int w, int h)
+        {
+            using var f = new Font("Segoe UI", 10);
+            using var br = new SolidBrush(Color.Gray);
+
+            g.DrawString("Chưa có dữ liệu", f, br, w / 2 - 60, h / 2);
         }
 
         private void BtnRefresh_Click(object sender, EventArgs e)
         {
             LoadCharts();
+        }
+
+        private void picPie_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

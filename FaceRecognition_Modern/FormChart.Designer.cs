@@ -25,125 +25,172 @@
 
         private void InitializeComponent()
         {
-            this.panelTop = new System.Windows.Forms.Panel();
-            this.panelStats = new System.Windows.Forms.Panel();
-            this.panelCharts = new System.Windows.Forms.Panel();
-            this.picBar = new System.Windows.Forms.PictureBox();
-            this.picPie = new System.Windows.Forms.PictureBox();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.lblUser = new System.Windows.Forms.Label();
-            this.lblTotalReg = new System.Windows.Forms.Label();
-            this.lblTodayPresent = new System.Windows.Forms.Label();
-            this.lblTodayAbsent = new System.Windows.Forms.Label();
-            this.btnRefresh = new System.Windows.Forms.Button();
-
-            ((System.ComponentModel.ISupportInitialize)(this.picBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picPie)).BeginInit();
-            this.SuspendLayout();
-
+            panelTop = new Panel();
+            lblUser = new Label();
+            lblTitle = new Label();
+            btnRefresh = new Button();
+            panelStats = new Panel();
+            lblTodayAbsent = new Label();
+            lblTodayPresent = new Label();
+            lblTotalReg = new Label();
+            panelCharts = new Panel();
+            picPie = new PictureBox();
+            picBar = new PictureBox();
+            panelTop.SuspendLayout();
+            panelStats.SuspendLayout();
+            panelCharts.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picPie).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picBar).BeginInit();
+            SuspendLayout();
+            // 
             // panelTop
-            this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelTop.Height = 52;
-            this.panelTop.BackColor = System.Drawing.Color.FromArgb(18, 18, 28);
-            this.panelTop.Padding = new System.Windows.Forms.Padding(14, 0, 14, 0);
-
-            this.lblTitle.Text = "  Bieu do thong ke";
-            this.lblTitle.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblTitle.Width = 240;
-            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 12f, System.Drawing.FontStyle.Bold);
-            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(0, 230, 118);
-            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-
-            this.lblUser.Text = "";
-            this.lblUser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblUser.Font = new System.Drawing.Font("Segoe UI", 9f);
-            this.lblUser.ForeColor = System.Drawing.Color.FromArgb(120, 120, 150);
-            this.lblUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-
-            this.btnRefresh.Text = "Lam moi";
-            this.btnRefresh.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnRefresh.Width = 100;
-            this.btnRefresh.Font = new System.Drawing.Font("Segoe UI", 9f, System.Drawing.FontStyle.Bold);
-            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(33, 150, 243);
-            this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefresh.FlatAppearance.BorderSize = 0;
-            this.btnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRefresh.Click += new System.EventHandler(this.BtnRefresh_Click);
-
-            this.panelTop.Controls.Add(this.lblUser);
-            this.panelTop.Controls.Add(this.lblTitle);
-            this.panelTop.Controls.Add(this.btnRefresh);
-
+            // 
+            panelTop.BackColor = Color.FromArgb(21, 101, 192);
+            panelTop.Controls.Add(lblUser);
+            panelTop.Controls.Add(lblTitle);
+            panelTop.Controls.Add(btnRefresh);
+            panelTop.Dock = DockStyle.Top;
+            panelTop.Location = new Point(0, 0);
+            panelTop.Name = "panelTop";
+            panelTop.Padding = new Padding(16, 0, 16, 0);
+            panelTop.Size = new Size(1100, 56);
+            panelTop.TabIndex = 2;
+            // 
+            // lblUser
+            // 
+            lblUser.Dock = DockStyle.Fill;
+            lblUser.Font = new Font("Segoe UI", 9F);
+            lblUser.ForeColor = Color.FromArgb(220, 235, 255);
+            lblUser.Location = new Point(266, 0);
+            lblUser.Name = "lblUser";
+            lblUser.Size = new Size(708, 56);
+            lblUser.TabIndex = 0;
+            lblUser.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblTitle
+            // 
+            lblTitle.Dock = DockStyle.Left;
+            lblTitle.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.White;
+            lblTitle.Location = new Point(16, 0);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(250, 56);
+            lblTitle.TabIndex = 1;
+            lblTitle.Text = "Biểu đồ thống kê";
+            lblTitle.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // btnRefresh
+            // 
+            btnRefresh.BackColor = Color.White;
+            btnRefresh.Dock = DockStyle.Right;
+            btnRefresh.FlatAppearance.BorderColor = Color.FromArgb(200, 210, 230);
+            btnRefresh.FlatStyle = FlatStyle.Flat;
+            btnRefresh.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnRefresh.ForeColor = Color.FromArgb(21, 101, 192);
+            btnRefresh.Location = new Point(974, 0);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(110, 56);
+            btnRefresh.TabIndex = 2;
+            btnRefresh.Text = "Làm mới";
+            btnRefresh.UseVisualStyleBackColor = false;
+            btnRefresh.Click += BtnRefresh_Click;
+            // 
             // panelStats
-            this.panelStats.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelStats.Height = 56;
-            this.panelStats.BackColor = System.Drawing.Color.FromArgb(14, 14, 22);
-            this.panelStats.Padding = new System.Windows.Forms.Padding(20, 8, 20, 8);
-
-            this.lblTotalReg.Text = "Tong da dang ky: 0 nguoi";
-            this.lblTotalReg.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblTotalReg.Width = 220;
-            this.lblTotalReg.Font = new System.Drawing.Font("Segoe UI", 9f, System.Drawing.FontStyle.Bold);
-            this.lblTotalReg.ForeColor = System.Drawing.Color.FromArgb(150, 150, 200);
-            this.lblTotalReg.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-
-            this.lblTodayPresent.Text = "Co mat hom nay: 0";
-            this.lblTodayPresent.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblTodayPresent.Width = 200;
-            this.lblTodayPresent.Font = new System.Drawing.Font("Segoe UI", 9f, System.Drawing.FontStyle.Bold);
-            this.lblTodayPresent.ForeColor = System.Drawing.Color.FromArgb(0, 200, 100);
-            this.lblTodayPresent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-
-            this.lblTodayAbsent.Text = "Vang hom nay: 0";
-            this.lblTodayAbsent.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblTodayAbsent.Width = 200;
-            this.lblTodayAbsent.Font = new System.Drawing.Font("Segoe UI", 9f, System.Drawing.FontStyle.Bold);
-            this.lblTodayAbsent.ForeColor = System.Drawing.Color.FromArgb(220, 60, 60);
-            this.lblTodayAbsent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-
-            this.panelStats.Controls.Add(this.lblTodayAbsent);
-            this.panelStats.Controls.Add(this.lblTodayPresent);
-            this.panelStats.Controls.Add(this.lblTotalReg);
-
+            // 
+            panelStats.BackColor = Color.FromArgb(245, 249, 255);
+            panelStats.Controls.Add(lblTodayAbsent);
+            panelStats.Controls.Add(lblTodayPresent);
+            panelStats.Controls.Add(lblTotalReg);
+            panelStats.Dock = DockStyle.Top;
+            panelStats.Location = new Point(0, 56);
+            panelStats.Name = "panelStats";
+            panelStats.Padding = new Padding(20, 8, 20, 8);
+            panelStats.Size = new Size(1100, 60);
+            panelStats.TabIndex = 1;
+            // 
+            // lblTodayAbsent
+            // 
+            lblTodayAbsent.Dock = DockStyle.Left;
+            lblTodayAbsent.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblTodayAbsent.ForeColor = Color.FromArgb(211, 47, 47);
+            lblTodayAbsent.Location = new Point(490, 8);
+            lblTodayAbsent.Name = "lblTodayAbsent";
+            lblTodayAbsent.Size = new Size(200, 44);
+            lblTodayAbsent.TabIndex = 0;
+            lblTodayAbsent.Text = "Vắng hôm nay: 0";
+            // 
+            // lblTodayPresent
+            // 
+            lblTodayPresent.Dock = DockStyle.Left;
+            lblTodayPresent.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblTodayPresent.ForeColor = Color.FromArgb(56, 142, 60);
+            lblTodayPresent.Location = new Point(270, 8);
+            lblTodayPresent.Name = "lblTodayPresent";
+            lblTodayPresent.Size = new Size(220, 44);
+            lblTodayPresent.TabIndex = 1;
+            lblTodayPresent.Text = "Có mặt hôm nay: 0";
+            // 
+            // lblTotalReg
+            // 
+            lblTotalReg.Dock = DockStyle.Left;
+            lblTotalReg.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblTotalReg.ForeColor = Color.FromArgb(60, 60, 60);
+            lblTotalReg.Location = new Point(20, 8);
+            lblTotalReg.Name = "lblTotalReg";
+            lblTotalReg.Size = new Size(250, 44);
+            lblTotalReg.TabIndex = 2;
+            lblTotalReg.Text = "Tổng đã đăng ký: 0";
+            // 
             // panelCharts
-            this.panelCharts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelCharts.BackColor = System.Drawing.Color.FromArgb(10, 10, 18);
-            this.panelCharts.Padding = new System.Windows.Forms.Padding(10);
-
-            // picBar (bên trái)
-            this.picBar.Dock = System.Windows.Forms.DockStyle.Left;
-            this.picBar.Width = 580;
-            this.picBar.BackColor = System.Drawing.Color.FromArgb(16, 16, 26);
-            this.picBar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picBar.TabStop = false;
-
-            // picPie (bên phải)
-            this.picPie.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picPie.BackColor = System.Drawing.Color.FromArgb(16, 16, 26);
-            this.picPie.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picPie.TabStop = false;
-
-            this.panelCharts.Controls.Add(this.picPie);
-            this.panelCharts.Controls.Add(this.picBar);
-
+            // 
+            panelCharts.BackColor = Color.White;
+            panelCharts.Controls.Add(picPie);
+            panelCharts.Controls.Add(picBar);
+            panelCharts.Dock = DockStyle.Fill;
+            panelCharts.Location = new Point(0, 116);
+            panelCharts.Name = "panelCharts";
+            panelCharts.Padding = new Padding(10);
+            panelCharts.Size = new Size(1100, 524);
+            panelCharts.TabIndex = 0;
+            // 
+            // picPie
+            // 
+            picPie.BackColor = Color.FromArgb(250, 250, 250);
+            picPie.BorderStyle = BorderStyle.FixedSingle;
+            picPie.Location = new Point(590, 10);
+            picPie.Name = "picPie";
+            picPie.Size = new Size(500, 504);
+            picPie.TabIndex = 0;
+            picPie.TabStop = false;
+            picPie.Click += picPie_Click;
+            // 
+            // picBar
+            // 
+            picBar.BackColor = Color.FromArgb(250, 250, 250);
+            picBar.BorderStyle = BorderStyle.FixedSingle;
+            picBar.Location = new Point(0, 10);
+            picBar.Name = "picBar";
+            picBar.Size = new Size(580, 504);
+            picBar.TabIndex = 1;
+            picBar.TabStop = false;
+            // 
             // FormChart
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1100, 640);
-            this.MinimumSize = new System.Drawing.Size(900, 500);
-            this.BackColor = System.Drawing.Color.FromArgb(10, 10, 18);
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Bieu do thong ke — FaceRecognition";
-            this.Load += new System.EventHandler(this.FormChart_Load);
-
-            this.Controls.Add(this.panelCharts);
-            this.Controls.Add(this.panelStats);
-            this.Controls.Add(this.panelTop);
-
-            ((System.ComponentModel.ISupportInitialize)(this.picBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picPie)).EndInit();
-            this.ResumeLayout(false);
+            // 
+            BackColor = Color.White;
+            ClientSize = new Size(1100, 640);
+            Controls.Add(panelCharts);
+            Controls.Add(panelStats);
+            Controls.Add(panelTop);
+            Name = "FormChart";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Biểu đồ thống kê — FaceRecognition";
+            Load += FormChart_Load;
+            panelTop.ResumeLayout(false);
+            panelStats.ResumeLayout(false);
+            panelCharts.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)picPie).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picBar).EndInit();
+            ResumeLayout(false);
         }
     }
 }
