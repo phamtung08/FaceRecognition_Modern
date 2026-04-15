@@ -16,7 +16,7 @@ namespace FaceRecognition_Modern
         private bool _isRunning = false;
 
         private const double THRESHOLD = 3500;
-        private const int CONFIRM_FRAMES = 5;
+        private const int CONFIRM_FRAMES = 15;  // Cần 15 frames liên tiếp mới điểm danh
 
         private HashSet<string> _attendedToday = new();
         private Dictionary<string, int> _confirmCount = new();
@@ -24,6 +24,18 @@ namespace FaceRecognition_Modern
         public Form4()
         {
             InitializeComponent();
+
+            Button btn = new Button();
+            btn.Text = "X";
+            btn.Size = new Size(30, 30);
+            btn.Location = new Point(10, 10);
+
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.FlatAppearance.BorderSize = 0;
+
+            btn.Click += (s, e) => this.Close();
+
+            this.Controls.Add(btn);
         }
 
         private void BtnBack_Click(object sender, EventArgs e)
@@ -34,7 +46,7 @@ namespace FaceRecognition_Modern
         private void Form4_Load(object sender, EventArgs e)
         {
             CvInvoke.UseOpenCL = false;
-            lblDate.Text = $"Ngay: {DateTime.Now:dd/MM/yyyy}";
+            lblDate.Text = $"Ngày: {DateTime.Now:dd/MM/yyyy}";
 
             // ── Phân quyền: ẩn nút Xóa và Xuất CSV với SinhVien ─────────────
             bool isAdmin = UserSession.Role == "Admin";
@@ -46,16 +58,16 @@ namespace FaceRecognition_Modern
             if (!DatabaseHelper.TestConnection())
             {
                 MessageBox.Show(
-                    "Khong ket noi duoc SQL Server!",
-                    "Loi ket noi DB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    "Không kết nối được SQL Server!",
+                    "Lỗi kết nối DB", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 btnStart.Enabled = false;
-                lblDbStatus.Text = "DB: Khong ket noi duoc";
+                lblDbStatus.Text = "DB: không kết nối được";
                 lblDbStatus.ForeColor = Color.FromArgb(255, 80, 80);
                 return;
             }
 
             DatabaseHelper.EnsureTableExists();
-            lblDbStatus.Text = "DB: Da ket noi";
+            lblDbStatus.Text = "DB: Đã kết nối";
             lblDbStatus.ForeColor = Color.FromArgb(0, 230, 118);
 
             string cascadePath = Path.Combine(
@@ -64,7 +76,7 @@ namespace FaceRecognition_Modern
 
             if (!File.Exists(cascadePath))
             {
-                MessageBox.Show("Khong tim thay cascade file!", "Loi",
+                MessageBox.Show("Không tìm thấy cascade file!", "Lỗi",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -74,8 +86,8 @@ namespace FaceRecognition_Modern
                 AppDomain.CurrentDomain.BaseDirectory, "face_model.yml");
             if (!File.Exists(modelPath))
             {
-                MessageBox.Show("Chua co model!\nHay train o Form2 truoc.",
-                    "Chua train", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Chưa có model!\nHãy train ở Form2 Trước.",
+                    "Chưa train", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -91,7 +103,7 @@ namespace FaceRecognition_Modern
             recognizer = new EigenFaceRecognizer();
             recognizer.Read(modelPath);
 
-            lblModelStatus.Text = $"Model: {_labelToName.Count} nguoi";
+            lblModelStatus.Text = $"Model: {_labelToName.Count} người";
             lblModelStatus.ForeColor = Color.FromArgb(0, 230, 118);
 
             LoadTodayData();
@@ -103,7 +115,7 @@ namespace FaceRecognition_Modern
             _isRunning = true;
             btnStart.Enabled = false;
             btnStop.Enabled = true;
-            lblCameraStatus.Text = "Dang diem danh...";
+            lblCameraStatus.Text = "Đang điểm danh...";
             lblCameraStatus.ForeColor = Color.FromArgb(0, 230, 118);
             _confirmCount.Clear();
 
@@ -128,7 +140,7 @@ namespace FaceRecognition_Modern
 
             btnStart.Enabled = true;
             btnStop.Enabled = false;
-            lblCameraStatus.Text = "Da dung";
+            lblCameraStatus.Text = "Đã dừng";
             lblCameraStatus.ForeColor = Color.Gray;
             picCamera.Image = null;
             _confirmCount.Clear();
@@ -161,7 +173,7 @@ namespace FaceRecognition_Modern
 
                             foreach (var face in faces)
                             {
-                                string name = "Khong nhan ra";
+                                string name = "Không nhận ra";
                                 Color boxColor = Color.FromArgb(255, 60, 60);
                                 string displayExtra = "";
 
@@ -190,7 +202,7 @@ namespace FaceRecognition_Modern
 
                                             int needed = CONFIRM_FRAMES - _confirmCount[name];
                                             displayExtra = needed > 0
-                                                ? $"Xac nhan: {_confirmCount[name]}/{CONFIRM_FRAMES}"
+                                                ? $"XÁC NHẬN: {_confirmCount[name]}/{CONFIRM_FRAMES}"
                                                 : "";
 
                                             if (_confirmCount[name] >= CONFIRM_FRAMES)
@@ -208,9 +220,9 @@ namespace FaceRecognition_Modern
                                                         {
                                                             HoTen = name,
                                                             ThoiGian = now,
-                                                            TrangThai = "Co mat"
+                                                            TrangThai = "Có mặt"
                                                         });
-                                                        lblTotal.Text = $"Tong: {dataGrid.Rows.Count} nguoi";
+                                                        lblTotal.Text = $"Tổng: {dataGrid.Rows.Count} người";
                                                     }));
                                                 }
                                                 else
@@ -221,7 +233,7 @@ namespace FaceRecognition_Modern
                                         }
                                         else
                                         {
-                                            displayExtra = "Da diem danh";
+                                            displayExtra = "Đã điểm danh";
                                         }
                                     }
 
@@ -270,7 +282,7 @@ namespace FaceRecognition_Modern
                                     {
                                         using var extraFont = new Font("Segoe UI", 8f);
                                         using var extraBrush = new SolidBrush(
-                                            displayExtra.StartsWith("Xac nhan")
+                                            displayExtra.StartsWith("Xác nhận")
                                                 ? Color.Orange
                                                 : Color.FromArgb(0, 230, 118));
                                         g.DrawString(displayExtra, extraFont, extraBrush,
@@ -295,8 +307,8 @@ namespace FaceRecognition_Modern
                                     picCamera.Image = bmp;
                                     old?.Dispose();
                                     lblFaceCount.Text = faces.Length > 0
-                                        ? $"Phat hien: {faces.Length} khuon mat"
-                                        : "Khong co khuon mat";
+                                        ? $"Phát hiện: {faces.Length} khuôn mặt"
+                                        : "Không có khuôn mặt";
                                 }
                                 catch { bmp.Dispose(); }
                             }));
@@ -306,7 +318,7 @@ namespace FaceRecognition_Modern
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine("Loi: " + ex.Message);
+                    Debug.WriteLine("Lỗi: " + ex.Message);
                 }
                 finally
                 {
@@ -326,7 +338,7 @@ namespace FaceRecognition_Modern
                 _attendedToday.Add(r.HoTen);
                 AddRowToGrid(r);
             }
-            lblTotal.Text = $"Tong: {records.Count} nguoi";
+            lblTotal.Text = $"Tổng: {records.Count} người";
         }
 
         private void AddRowToGrid(AttendanceRecord record)
@@ -337,7 +349,9 @@ namespace FaceRecognition_Modern
                 record.ThoiGian.ToString("dd/MM/yyyy"),
                 record.ThoiGian.ToString("HH:mm:ss"),
                 record.TrangThai);
-            dataGrid.Rows[0].DefaultCellStyle.BackColor = Color.FromArgb(220, 255, 220);
+            // Highlight row mới nhất bằng màu xanh nhạt
+            dataGrid.Rows[0].DefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(232, 245, 233);
+            dataGrid.Rows[0].DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(27, 94, 32);
         }
 
         private void BtnRefresh_Click(object sender, EventArgs e) => LoadTodayData();
@@ -347,7 +361,7 @@ namespace FaceRecognition_Modern
             // Kiểm tra quyền thêm lần nữa
             if (UserSession.Role == "SinhVien")
             {
-                MessageBox.Show("Khong co quyen xuat CSV!", "Khong co quyen",
+                MessageBox.Show("Không có quyền xuất CSV!", "Không có quyền",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -355,8 +369,8 @@ namespace FaceRecognition_Modern
             var records = DatabaseHelper.GetAttendanceByDate(DateTime.Now);
             if (records.Count == 0)
             {
-                MessageBox.Show("Chua co du lieu diem danh hom nay!",
-                    "Thong bao", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Chưa có dữ liệu điểm danh hôm nay!",
+                    "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -365,7 +379,7 @@ namespace FaceRecognition_Modern
             string file = Path.Combine(dir, $"diemdanh_{DateTime.Now:yyyy-MM-dd}.csv");
 
             using var sw = new System.IO.StreamWriter(file, false, System.Text.Encoding.UTF8);
-            sw.WriteLine("STT,Ho ten,Ngay,Gio vao,Trang thai");
+            sw.WriteLine("STT,Họ tên,Ngày,Giờ vào,Trạng thái");
             int i = 1;
             foreach (var r in records)
                 sw.WriteLine($"{i++},{r.HoTen},{r.ThoiGian:dd/MM/yyyy},{r.ThoiGian:HH:mm:ss},{r.TrangThai}");
@@ -379,14 +393,14 @@ namespace FaceRecognition_Modern
             // Kiểm tra quyền thêm lần nữa
             if (!UserSession.IsAdmin)
             {
-                MessageBox.Show("Chi Admin moi co quyen xoa du lieu!", "Khong co quyen",
+                MessageBox.Show("Chỉ admin mới có quyền xóa dữ liệu!", "Không có quyền",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             var confirm = MessageBox.Show(
-                "Xoa toan bo diem danh hom nay khoi database?",
-                "Xac nhan", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                "Xóa toàn bộ điểm danh hôm nay khỏi database?",
+                "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (confirm == DialogResult.Yes)
             {
@@ -394,8 +408,8 @@ namespace FaceRecognition_Modern
                 dataGrid.Rows.Clear();
                 _attendedToday.Clear();
                 _confirmCount.Clear();
-                lblTotal.Text = "Tong: 0 nguoi";
-                lblFaceCount.Text = "Da xoa du lieu hom nay";
+                lblTotal.Text = "Tổng: 0 người";
+                lblFaceCount.Text = "Đã xóa dữ liệu hôm nay";
             }
         }
 
