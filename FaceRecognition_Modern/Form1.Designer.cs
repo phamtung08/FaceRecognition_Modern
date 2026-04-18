@@ -92,9 +92,9 @@
             lblUserInfo.Dock = DockStyle.Fill;
             lblUserInfo.Font = new Font("Segoe UI", 8.5F);
             lblUserInfo.ForeColor = Color.FromArgb(187, 222, 251);
-            lblUserInfo.Location = new Point(853, 0);
+            lblUserInfo.Location = new Point(847, 0);
             lblUserInfo.Name = "lblUserInfo";
-            lblUserInfo.Size = new Size(49, 48);
+            lblUserInfo.Size = new Size(55, 48);
             lblUserInfo.TabIndex = 0;
             lblUserInfo.TextAlign = ContentAlignment.MiddleRight;
             // 
@@ -108,11 +108,11 @@
             btnNavManage.FlatStyle = FlatStyle.Flat;
             btnNavManage.Font = new Font("Segoe UI", 8.5F);
             btnNavManage.ForeColor = Color.FromArgb(187, 222, 251);
-            btnNavManage.Location = new Point(758, 0);
+            btnNavManage.Location = new Point(752, 0);
             btnNavManage.Name = "btnNavManage";
             btnNavManage.Size = new Size(95, 48);
             btnNavManage.TabIndex = 1;
-            btnNavManage.Text = "Quan ly TK";
+            btnNavManage.Text = "Quản lý TK";
             btnNavManage.UseVisualStyleBackColor = false;
             btnNavManage.Click += menuManageAccounts_Click;
             // 
@@ -126,11 +126,11 @@
             btnNavTest.FlatStyle = FlatStyle.Flat;
             btnNavTest.Font = new Font("Segoe UI", 8.5F);
             btnNavTest.ForeColor = Color.FromArgb(187, 222, 251);
-            btnNavTest.Location = new Point(678, 0);
+            btnNavTest.Location = new Point(672, 0);
             btnNavTest.Name = "btnNavTest";
             btnNavTest.Size = new Size(80, 48);
             btnNavTest.TabIndex = 2;
-            btnNavTest.Text = "Kiem tra";
+            btnNavTest.Text = "Kiểm tra";
             btnNavTest.UseVisualStyleBackColor = false;
             btnNavTest.Click += menuTest_Click;
             // 
@@ -144,11 +144,11 @@
             btnNavChart.FlatStyle = FlatStyle.Flat;
             btnNavChart.Font = new Font("Segoe UI", 8.5F);
             btnNavChart.ForeColor = Color.FromArgb(187, 222, 251);
-            btnNavChart.Location = new Point(598, 0);
+            btnNavChart.Location = new Point(592, 0);
             btnNavChart.Name = "btnNavChart";
             btnNavChart.Size = new Size(80, 48);
             btnNavChart.TabIndex = 3;
-            btnNavChart.Text = "Bieu do";
+            btnNavChart.Text = "Biểu đồ";
             btnNavChart.UseVisualStyleBackColor = false;
             btnNavChart.Click += menuChart_Click;
             // 
@@ -162,11 +162,11 @@
             btnNavAttendance.FlatStyle = FlatStyle.Flat;
             btnNavAttendance.Font = new Font("Segoe UI", 8.5F);
             btnNavAttendance.ForeColor = Color.FromArgb(187, 222, 251);
-            btnNavAttendance.Location = new Point(508, 0);
+            btnNavAttendance.Location = new Point(502, 0);
             btnNavAttendance.Name = "btnNavAttendance";
             btnNavAttendance.Size = new Size(90, 48);
             btnNavAttendance.TabIndex = 4;
-            btnNavAttendance.Text = "Diem danh";
+            btnNavAttendance.Text = "Điểm danh";
             btnNavAttendance.UseVisualStyleBackColor = false;
             btnNavAttendance.Click += menuAttendance_Click;
             // 
@@ -180,11 +180,11 @@
             btnNavRecognize.FlatStyle = FlatStyle.Flat;
             btnNavRecognize.Font = new Font("Segoe UI", 8.5F);
             btnNavRecognize.ForeColor = Color.FromArgb(187, 222, 251);
-            btnNavRecognize.Location = new Point(418, 0);
+            btnNavRecognize.Location = new Point(412, 0);
             btnNavRecognize.Name = "btnNavRecognize";
             btnNavRecognize.Size = new Size(90, 48);
             btnNavRecognize.TabIndex = 5;
-            btnNavRecognize.Text = "Nhan dien";
+            btnNavRecognize.Text = "Nhận diện";
             btnNavRecognize.UseVisualStyleBackColor = false;
             btnNavRecognize.Click += menuRecognize_Click;
             // 
@@ -198,7 +198,7 @@
             btnNavTrain.FlatStyle = FlatStyle.Flat;
             btnNavTrain.Font = new Font("Segoe UI", 8.5F);
             btnNavTrain.ForeColor = Color.FromArgb(187, 222, 251);
-            btnNavTrain.Location = new Point(318, 0);
+            btnNavTrain.Location = new Point(312, 0);
             btnNavTrain.Name = "btnNavTrain";
             btnNavTrain.Size = new Size(100, 48);
             btnNavTrain.TabIndex = 6;
@@ -216,11 +216,11 @@
             btnNavCapture.FlatStyle = FlatStyle.Flat;
             btnNavCapture.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);
             btnNavCapture.ForeColor = Color.White;
-            btnNavCapture.Location = new Point(208, 0);
+            btnNavCapture.Location = new Point(202, 0);
             btnNavCapture.Name = "btnNavCapture";
             btnNavCapture.Size = new Size(110, 48);
             btnNavCapture.TabIndex = 7;
-            btnNavCapture.Text = "Thu thap anh";
+            btnNavCapture.Text = "Thu thập ảnh";
             btnNavCapture.UseVisualStyleBackColor = false;
             // 
             // lblAppTitle
@@ -230,10 +230,11 @@
             lblAppTitle.ForeColor = Color.White;
             lblAppTitle.Location = new Point(8, 0);
             lblAppTitle.Name = "lblAppTitle";
-            lblAppTitle.Size = new Size(200, 48);
+            lblAppTitle.Size = new Size(194, 48);
             lblAppTitle.TabIndex = 8;
             lblAppTitle.Text = "  FaceRecognition Pro";
             lblAppTitle.TextAlign = ContentAlignment.MiddleLeft;
+            lblAppTitle.Click += lblAppTitle_Click;
             // 
             // btnLogout
             // 
@@ -249,7 +250,7 @@
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(90, 48);
             btnLogout.TabIndex = 9;
-            btnLogout.Text = "Dang xuat";
+            btnLogout.Text = "Đăng xuất";
             btnLogout.UseVisualStyleBackColor = false;
             btnLogout.Click += BtnLogout_Click;
             // 
@@ -300,7 +301,7 @@
             lblCount.Padding = new Padding(10, 0, 0, 0);
             lblCount.Size = new Size(578, 30);
             lblCount.TabIndex = 0;
-            lblCount.Text = "Da luu: 0 anh";
+            lblCount.Text = "Đã lưu: 0 ảnh";
             lblCount.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // btnCapture
@@ -316,7 +317,7 @@
             btnCapture.Name = "btnCapture";
             btnCapture.Size = new Size(110, 30);
             btnCapture.TabIndex = 1;
-            btnCapture.Text = "Chup [Space]";
+            btnCapture.Text = "Chụp [Space]";
             btnCapture.UseVisualStyleBackColor = false;
             btnCapture.Click += BtnCapture_Click;
             // 
@@ -333,7 +334,7 @@
             btnSetName.Name = "btnSetName";
             btnSetName.Size = new Size(72, 30);
             btnSetName.TabIndex = 2;
-            btnSetName.Text = "Dat ten";
+            btnSetName.Text = "Đặt tên";
             btnSetName.UseVisualStyleBackColor = false;
             btnSetName.Click += BtnSetName_Click;
             // 
@@ -359,7 +360,7 @@
             lblNameHint.Name = "lblNameHint";
             lblNameHint.Size = new Size(56, 30);
             lblNameHint.TabIndex = 4;
-            lblNameHint.Text = "Ho ten:";
+            lblNameHint.Text = "Họ tên:";
             lblNameHint.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // panelStatus
@@ -384,7 +385,7 @@
             lblResult.Name = "lblResult";
             lblResult.Size = new Size(790, 36);
             lblResult.TabIndex = 0;
-            lblResult.Text = "Nhan Start Camera de bat dau";
+            lblResult.Text = "Nhấn Start Camera để bắt đầu";
             lblResult.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // btnStop
@@ -401,7 +402,7 @@
             btnStop.Name = "btnStop";
             btnStop.Size = new Size(80, 36);
             btnStop.TabIndex = 1;
-            btnStop.Text = "Dung";
+            btnStop.Text = "Dừng";
             btnStop.UseVisualStyleBackColor = false;
             btnStop.Click += BtnStop_Click;
             // 

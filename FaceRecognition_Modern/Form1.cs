@@ -31,13 +31,13 @@ namespace FaceRecognition_Modern
 
             if (!File.Exists(cascadePath))
             {
-                MessageBox.Show($"Khong tim thay file:\n{cascadePath}",
-                    "Thieu file cascade", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Không tìm thấy file:\n{cascadePath}",
+                    "Thiếu file cascade", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             faceCascade = new CascadeClassifier(cascadePath);
-            SetResult($"Xin chao {UserSession.Username} ({UserSession.Role})",
+            SetResult($"Xin chào {UserSession.Username} ({UserSession.Role})",
                 System.Drawing.Color.FromArgb(21, 101, 192));
             if (!IsDisposed) lblUserInfo.Text = $"{UserSession.Username} | {UserSession.Role}  ";
 
@@ -71,7 +71,7 @@ namespace FaceRecognition_Modern
             btnStop.Visible = !isSinhVien;
 
             if (isSinhVien)
-                SetResult("Ban chi co quyen xem nhan dien", Color.FromArgb(255, 180, 0));
+                SetResult("Bạn chỉ có quyền xem nhận diện", Color.FromArgb(255, 180, 0));
         }
 
         // ── Start / Stop camera ───────────────────────────────────────────────
@@ -85,7 +85,7 @@ namespace FaceRecognition_Modern
         {
             if (!_cameraRunning) return;
             StopCamera();
-            SetResult("Da dung camera", Color.FromArgb(150, 150, 180));
+            SetResult("Đã dừng camera", Color.FromArgb(150, 150, 180));
         }
 
         private void StartCamera()
@@ -114,7 +114,7 @@ namespace FaceRecognition_Modern
             _cameraRunning = true;
             btnStart.Enabled = false;
             btnStop.Enabled = true;
-            SetResult("Camera dang chay...", Color.FromArgb(0, 200, 100));
+            SetResult("Camera đang chạy...", Color.FromArgb(0, 200, 100));
         }
 
         private void StopCamera()
@@ -174,8 +174,8 @@ namespace FaceRecognition_Modern
                         }
 
                         string resultText = faces.Length > 0
-                            ? $"Phat hien {faces.Length} khuon mat"
-                            : "Khong phat hien khuon mat";
+                            ? $"Phát hiện {faces.Length} khuôn mặt"
+                            : "Không phát hiện khuôn mặt";
                         Color resultColor = faces.Length > 0
                             ? Color.FromArgb(0, 220, 100)
                             : Color.FromArgb(150, 150, 180);
@@ -199,7 +199,7 @@ namespace FaceRecognition_Modern
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine("Loi: " + ex.Message);
+                    Debug.WriteLine("Lỗi: " + ex.Message);
                 }
                 finally
                 {
@@ -236,8 +236,8 @@ namespace FaceRecognition_Modern
         {
             if (!File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "face_model.yml")))
             {
-                MessageBox.Show("Chua co model!\nHay vao Train Model truoc.",
-                    "Chua train", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Chưa có model!\nHãy vào Train Model trước.",
+                    "Chưa train", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             StopCamera();
@@ -251,8 +251,8 @@ namespace FaceRecognition_Modern
         {
             if (!File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "face_model.yml")))
             {
-                MessageBox.Show("Chua co model!\nHay vao Train Model truoc.",
-                    "Chua train", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Chưa có model!\nHãy vào Train Model trước.",
+                    "Chưa train", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             StopCamera();
@@ -293,8 +293,8 @@ namespace FaceRecognition_Modern
         private void BtnLogout_Click(object sender, EventArgs e)
         {
             var confirm = MessageBox.Show(
-                "Ban co muon dang xuat khong?",
-                "Dang xuat", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                "Bạn có muốn đăng xuất không?",
+                "Đăng xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (confirm == DialogResult.Yes)
             {
@@ -307,8 +307,8 @@ namespace FaceRecognition_Modern
         private void ShowNoPermission()
         {
             MessageBox.Show(
-                $"Tai khoan '{UserSession.Username}' ({UserSession.Role})\nkhong co quyen su dung chuc nang nay!",
-                "Khong co quyen", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                $"Tài khoản '{UserSession.Username}' ({UserSession.Role})\nKhông có quyền sử dụng chức năng này!",
+                "Không có quyền", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         // ── Thu thập ảnh (Admin only) ─────────────────────────────────────────
@@ -319,15 +319,15 @@ namespace FaceRecognition_Modern
             string name = txtPersonName.Text.Trim();
             if (string.IsNullOrEmpty(name))
             {
-                MessageBox.Show("Vui long nhap ten nguoi!", "Thieu ten",
+                MessageBox.Show("Vui lòng nhập tên người!", "Thiếu tên",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             _personName = name;
             _capturedCount = 0;
-            lblCount.Text = "Da luu: 0 anh";
-            SetResult($"San sang chup cho: {_personName}", Color.FromArgb(0, 200, 100));
+            lblCount.Text = "Đã lưu: 0 ảnh";
+            SetResult($"Sẵn sàng chụp cho: {_personName}", Color.FromArgb(0, 200, 100));
 
             Directory.CreateDirectory(Path.Combine(
                 AppDomain.CurrentDomain.BaseDirectory, "dataset", _personName));
@@ -348,7 +348,7 @@ namespace FaceRecognition_Modern
 
             if (frame == null || frame.IsEmpty)
             {
-                SetResult("Khong co frame — nhan Start truoc!", Color.OrangeRed);
+                SetResult("Không có frame — nhấn Start trước!", Color.OrangeRed);
                 return;
             }
 
@@ -361,7 +361,7 @@ namespace FaceRecognition_Modern
 
             if (faces.Length == 0)
             {
-                SetResult("Khong thay khuon mat!", Color.OrangeRed);
+                SetResult("Không thấy khuôn mặt!", Color.OrangeRed);
                 frame.Dispose();
                 return;
             }
@@ -377,11 +377,11 @@ namespace FaceRecognition_Modern
             resized.Save(filePath);
 
             _capturedCount++;
-            lblCount.Text = $"Da luu: {_capturedCount} anh";
-            SetResult($"Luu OK: {_capturedCount} anh", Color.FromArgb(0, 200, 100));
+            lblCount.Text = $"Đã lưu: {_capturedCount} ảnh";
+            SetResult($"Lưu OK: {_capturedCount} ảnh", Color.FromArgb(0, 200, 100));
 
             if (_capturedCount >= 20)
-                SetResult($"Du {_capturedCount} anh! Vao Tab Train Model.", Color.FromArgb(33, 150, 243));
+                SetResult($"Du {_capturedCount} ảnh! Vào Tab Train Model.", Color.FromArgb(33, 150, 243));
 
             faceRoi.Dispose();
             resized.Dispose();
@@ -403,6 +403,11 @@ namespace FaceRecognition_Modern
             StopCamera();
             latestFrame?.Dispose();
             base.OnFormClosing(e);
+        }
+
+        private void lblAppTitle_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
