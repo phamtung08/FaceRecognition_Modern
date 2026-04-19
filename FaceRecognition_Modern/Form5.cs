@@ -230,7 +230,7 @@ namespace FaceRecognition_Modern
 
                         // CHECKLIST 2: Test single + multiple faces
                         var faces = faceCascade!.DetectMultiScale(
-                            gray, 1.05, 3, new Size(40, 40));
+                            gray, 1.1, 4, new Size(50, 50));
 
                         _totalFrames++;
                         if (faces.Length > 0) _facesDetected++;

@@ -24,123 +24,160 @@
 
         private void InitializeComponent()
         {
-            this.panelTop = new System.Windows.Forms.Panel();
-            this.panelContent = new System.Windows.Forms.Panel();
-            this.panelBottom = new System.Windows.Forms.Panel();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.lblInfo = new System.Windows.Forms.Label();
-            this.lblLogHeader = new System.Windows.Forms.Label();
-            this.listLog = new System.Windows.Forms.ListBox();
-            this.progressBar = new System.Windows.Forms.ProgressBar();
-            this.lblProgress = new System.Windows.Forms.Label();
-            this.btnTrain = new System.Windows.Forms.Button();
-
-            this.panelTop.SuspendLayout();
-            this.panelContent.SuspendLayout();
-            this.panelBottom.SuspendLayout();
-            this.SuspendLayout();
-
-            // ── panelTop (header xanh dương) ─────────────────────────────────
-            this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelTop.Height = 64;
-            this.panelTop.BackColor = System.Drawing.Color.FromArgb(21, 101, 192);
-            this.panelTop.Padding = new System.Windows.Forms.Padding(16, 0, 16, 0);
-
-            this.lblTitle.Text = "Train EigenFace Model";
-            this.lblTitle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 13f, System.Drawing.FontStyle.Bold);
-            this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-
-            this.lblInfo.Text = "He thong nhan dien khuon mat — FaceRecognition Pro";
-            this.lblInfo.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblInfo.Height = 22;
-            this.lblInfo.Font = new System.Drawing.Font("Segoe UI", 8.5f);
-            this.lblInfo.ForeColor = System.Drawing.Color.FromArgb(187, 222, 251);
-            this.lblInfo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblInfo.Padding = new System.Windows.Forms.Padding(0, 0, 0, 4);
-
-            this.panelTop.Controls.Add(this.lblTitle);
-            this.panelTop.Controls.Add(this.lblInfo);
-
-            // ── panelContent (nội dung chính) ────────────────────────────────
-            this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContent.BackColor = System.Drawing.Color.White;
-            this.panelContent.Padding = new System.Windows.Forms.Padding(16, 12, 16, 8);
-
+            panelTop = new Panel();
+            lblTitle = new Label();
+            lblInfo = new Label();
+            panelContent = new Panel();
+            lblLogHeader = new Label();
+            listLog = new ListBox();
+            lblProgress = new Label();
+            progressBar = new ProgressBar();
+            panelBottom = new Panel();
+            btnTrain = new Button();
+            panelTop.SuspendLayout();
+            panelContent.SuspendLayout();
+            panelBottom.SuspendLayout();
+            SuspendLayout();
+            // 
+            // panelTop
+            // 
+            panelTop.BackColor = Color.FromArgb(21, 101, 192);
+            panelTop.Controls.Add(lblTitle);
+            panelTop.Controls.Add(lblInfo);
+            panelTop.Dock = DockStyle.Top;
+            panelTop.Location = new Point(0, 0);
+            panelTop.Name = "panelTop";
+            panelTop.Padding = new Padding(16, 0, 16, 0);
+            panelTop.Size = new Size(584, 64);
+            panelTop.TabIndex = 2;
+            // 
+            // lblTitle
+            // 
+            lblTitle.Dock = DockStyle.Fill;
+            lblTitle.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.White;
+            lblTitle.Location = new Point(16, 0);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(552, 42);
+            lblTitle.TabIndex = 0;
+            lblTitle.Text = "Train EigenFace Model";
+            lblTitle.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblInfo
+            // 
+            lblInfo.Dock = DockStyle.Bottom;
+            lblInfo.Font = new Font("Segoe UI", 8.5F);
+            lblInfo.ForeColor = Color.FromArgb(187, 222, 251);
+            lblInfo.Location = new Point(16, 42);
+            lblInfo.Name = "lblInfo";
+            lblInfo.Padding = new Padding(0, 0, 0, 4);
+            lblInfo.Size = new Size(552, 22);
+            lblInfo.TabIndex = 1;
+            lblInfo.Text = "Hệ thống nhận diện khuôn mặt — FaceRecognition Pro";
+            lblInfo.TextAlign = ContentAlignment.MiddleLeft;
+            lblInfo.Click += lblInfo_Click;
+            // 
+            // panelContent
+            // 
+            panelContent.BackColor = Color.White;
+            panelContent.Controls.Add(lblLogHeader);
+            panelContent.Controls.Add(listLog);
+            panelContent.Controls.Add(lblProgress);
+            panelContent.Controls.Add(progressBar);
+            panelContent.Dock = DockStyle.Fill;
+            panelContent.Location = new Point(0, 64);
+            panelContent.Name = "panelContent";
+            panelContent.Padding = new Padding(16, 12, 16, 8);
+            panelContent.Size = new Size(584, 344);
+            panelContent.TabIndex = 0;
+            // 
             // lblLogHeader
-            this.lblLogHeader.Text = "LOG QUA TRINH TRAIN";
-            this.lblLogHeader.Location = new System.Drawing.Point(16, 12);
-            this.lblLogHeader.Size = new System.Drawing.Size(552, 22);
-            this.lblLogHeader.Font = new System.Drawing.Font("Segoe UI", 8.5f, System.Drawing.FontStyle.Bold);
-            this.lblLogHeader.ForeColor = System.Drawing.Color.FromArgb(21, 101, 192);
-
+            // 
+            lblLogHeader.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);
+            lblLogHeader.ForeColor = Color.FromArgb(21, 101, 192);
+            lblLogHeader.Location = new Point(16, 12);
+            lblLogHeader.Name = "lblLogHeader";
+            lblLogHeader.Size = new Size(552, 22);
+            lblLogHeader.TabIndex = 0;
+            lblLogHeader.Text = "LOG QUÁ TRÌNH TRAIN";
+            // 
             // listLog
-            this.listLog.Location = new System.Drawing.Point(16, 38);
-            this.listLog.Size = new System.Drawing.Size(552, 240);
-            this.listLog.Font = new System.Drawing.Font("Consolas", 9f);
-            this.listLog.BackColor = System.Drawing.Color.FromArgb(245, 245, 245);
-            this.listLog.ForeColor = System.Drawing.Color.FromArgb(33, 33, 33);
-            this.listLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-
+            // 
+            listLog.BackColor = Color.FromArgb(245, 245, 245);
+            listLog.BorderStyle = BorderStyle.FixedSingle;
+            listLog.Font = new Font("Consolas", 9F);
+            listLog.ForeColor = Color.FromArgb(33, 33, 33);
+            listLog.Location = new Point(16, 38);
+            listLog.Name = "listLog";
+            listLog.Size = new Size(552, 236);
+            listLog.TabIndex = 1;
+            // 
             // lblProgress
-            this.lblProgress.Text = "Tien trinh:";
-            this.lblProgress.Location = new System.Drawing.Point(16, 290);
-            this.lblProgress.Size = new System.Drawing.Size(552, 18);
-            this.lblProgress.Font = new System.Drawing.Font("Segoe UI", 8.5f, System.Drawing.FontStyle.Bold);
-            this.lblProgress.ForeColor = System.Drawing.Color.FromArgb(96, 125, 139);
-
+            // 
+            lblProgress.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);
+            lblProgress.ForeColor = Color.FromArgb(96, 125, 139);
+            lblProgress.Location = new Point(16, 290);
+            lblProgress.Name = "lblProgress";
+            lblProgress.Size = new Size(552, 18);
+            lblProgress.TabIndex = 2;
+            lblProgress.Text = "Tiến trình:";
+            // 
             // progressBar
-            this.progressBar.Location = new System.Drawing.Point(16, 312);
-            this.progressBar.Size = new System.Drawing.Size(552, 20);
-            this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.progressBar.BackColor = System.Drawing.Color.FromArgb(227, 242, 253);
-            this.progressBar.ForeColor = System.Drawing.Color.FromArgb(21, 101, 192);
-
-            this.panelContent.Controls.Add(this.lblLogHeader);
-            this.panelContent.Controls.Add(this.listLog);
-            this.panelContent.Controls.Add(this.lblProgress);
-            this.panelContent.Controls.Add(this.progressBar);
-
-            // ── panelBottom (nút bấm) ─────────────────────────────────────────
-            this.panelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelBottom.Height = 92;
-            this.panelBottom.BackColor = System.Drawing.Color.FromArgb(245, 245, 245);
-            this.panelBottom.Padding = new System.Windows.Forms.Padding(16, 12, 16, 12);
-
+            // 
+            progressBar.BackColor = Color.FromArgb(227, 242, 253);
+            progressBar.ForeColor = Color.FromArgb(21, 101, 192);
+            progressBar.Location = new Point(16, 312);
+            progressBar.Name = "progressBar";
+            progressBar.Size = new Size(552, 20);
+            progressBar.Style = ProgressBarStyle.Continuous;
+            progressBar.TabIndex = 3;
+            // 
+            // panelBottom
+            // 
+            panelBottom.BackColor = Color.FromArgb(245, 245, 245);
+            panelBottom.Controls.Add(btnTrain);
+            panelBottom.Dock = DockStyle.Bottom;
+            panelBottom.Location = new Point(0, 408);
+            panelBottom.Name = "panelBottom";
+            panelBottom.Padding = new Padding(16, 12, 16, 12);
+            panelBottom.Size = new Size(584, 92);
+            panelBottom.TabIndex = 1;
+            // 
             // btnTrain
-            this.btnTrain.Text = "BAT DAU TRAIN MODEL";
-            this.btnTrain.Location = new System.Drawing.Point(16, 12);
-            this.btnTrain.Size = new System.Drawing.Size(552, 40);
-            this.btnTrain.Font = new System.Drawing.Font("Segoe UI", 10f, System.Drawing.FontStyle.Bold);
-            this.btnTrain.BackColor = System.Drawing.Color.FromArgb(21, 101, 192);
-            this.btnTrain.ForeColor = System.Drawing.Color.White;
-            this.btnTrain.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTrain.FlatAppearance.BorderSize = 0;
-            this.btnTrain.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTrain.Click += new System.EventHandler(this.BtnTrain_Click);
-
-            this.panelBottom.Controls.Add(this.btnTrain);
-
-            // ── Form2 ─────────────────────────────────────────────────────────
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 500);
-            this.BackColor = System.Drawing.Color.White;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FaceRecognition Pro — Train Model";
-            this.Load += new System.EventHandler(this.Form2_Load);
-
-            this.Controls.Add(this.panelContent);
-            this.Controls.Add(this.panelBottom);
-            this.Controls.Add(this.panelTop);
-
-            this.panelTop.ResumeLayout(false);
-            this.panelContent.ResumeLayout(false);
-            this.panelBottom.ResumeLayout(false);
-            this.ResumeLayout(false);
+            // 
+            btnTrain.BackColor = Color.FromArgb(21, 101, 192);
+            btnTrain.Cursor = Cursors.Hand;
+            btnTrain.FlatAppearance.BorderSize = 0;
+            btnTrain.FlatStyle = FlatStyle.Flat;
+            btnTrain.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnTrain.ForeColor = Color.White;
+            btnTrain.Location = new Point(16, 12);
+            btnTrain.Name = "btnTrain";
+            btnTrain.Size = new Size(552, 40);
+            btnTrain.TabIndex = 0;
+            btnTrain.Text = "BẮT ĐẦU TRAIN MODEL";
+            btnTrain.UseVisualStyleBackColor = false;
+            btnTrain.Click += BtnTrain_Click;
+            // 
+            // Form2
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
+            ClientSize = new Size(584, 500);
+            Controls.Add(panelContent);
+            Controls.Add(panelBottom);
+            Controls.Add(panelTop);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            Name = "Form2";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "FaceRecognition Pro — Train Model";
+            Load += Form2_Load;
+            panelTop.ResumeLayout(false);
+            panelContent.ResumeLayout(false);
+            panelBottom.ResumeLayout(false);
+            ResumeLayout(false);
         }
     }
 }

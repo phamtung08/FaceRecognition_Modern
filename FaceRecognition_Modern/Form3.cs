@@ -35,7 +35,7 @@ namespace FaceRecognition_Modern
 
             if (!File.Exists(cascadePath))
             {
-                MessageBox.Show("Khong tim thay cascade file!", "Loi",
+                MessageBox.Show("Không tìm thấy cascade file!", "Lỗi",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -47,8 +47,8 @@ namespace FaceRecognition_Modern
 
             if (!File.Exists(modelPath))
             {
-                MessageBox.Show("Chua co model!\nHay train o Form2 truoc.",
-                    "Chua train", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Chưa có model!\nHãy train ở Form2 trước.",
+                    "Chưa train", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -64,7 +64,7 @@ namespace FaceRecognition_Modern
             recognizer = new EigenFaceRecognizer();
             recognizer.Read(modelPath);
 
-            lblStatus.Text = $"Model da load: {_labelToName.Count} nguoi";
+            lblStatus.Text = $"Model đã load: {_labelToName.Count} người";
             lblStatus.ForeColor = System.Drawing.Color.FromArgb(46, 125, 50);
 
             capture = new VideoCapture(0);
@@ -97,7 +97,7 @@ namespace FaceRecognition_Modern
                         CvInvoke.EqualizeHist(gray, gray);
 
                         var faces = faceCascade!.DetectMultiScale(
-                            gray, 1.05, 3, new Size(30, 30));
+                            gray, 1.1, 4, new Size(50, 50));
 
                         Bitmap bmp = frame.ToBitmap();
                         using (Graphics g = Graphics.FromImage(bmp))
@@ -169,8 +169,8 @@ namespace FaceRecognition_Modern
                         }
 
                         string faceInfo = faces.Length > 0
-                            ? $"Phat hien: {faces.Length} khuon mat"
-                            : "Khong phat hien khuon mat";
+                            ? $"Phát hiện: {faces.Length} khuôn mặt"
+                            : "Không phát hiện khuôn mặt";
 
                         if (!IsDisposed && picCamera.IsHandleCreated)
                         {
@@ -191,7 +191,7 @@ namespace FaceRecognition_Modern
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine("Loi: " + ex.Message);
+                    Debug.WriteLine("Lỗi: " + ex.Message);
                 }
                 finally
                 {

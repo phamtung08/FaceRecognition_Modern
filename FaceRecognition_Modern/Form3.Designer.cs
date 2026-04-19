@@ -56,7 +56,7 @@
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(708, 56);
             lblTitle.TabIndex = 0;
-            lblTitle.Text = "Nhan dien Khuon mat Realtime";
+            lblTitle.Text = "Nhận diện khuôn mặt Realtime";
             lblTitle.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // lblSubtitle
@@ -97,7 +97,7 @@
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(876, 38);
             btnBack.TabIndex = 0;
-            btnBack.Text = "Quay lai Form1";
+            btnBack.Text = "Quay lại";
             btnBack.UseVisualStyleBackColor = false;
             btnBack.Click += BtnBack_Click;
             // 
@@ -110,7 +110,7 @@
             lblFaceCount.Name = "lblFaceCount";
             lblFaceCount.Size = new Size(876, 20);
             lblFaceCount.TabIndex = 1;
-            lblFaceCount.Text = "Cho camera khoi dong...";
+            lblFaceCount.Text = "Chờ camera khởi động...";
             lblFaceCount.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // lblStatus
@@ -122,7 +122,7 @@
             lblStatus.Name = "lblStatus";
             lblStatus.Size = new Size(876, 22);
             lblStatus.TabIndex = 2;
-            lblStatus.Text = "Dang load model...";
+            lblStatus.Text = "Đang load model...";
             lblStatus.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // picCamera
@@ -148,7 +148,7 @@
             MinimumSize = new Size(700, 500);
             Name = "Form3";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "FaceRecognition Pro — Nhan dien";
+            Text = "FaceRecognition Pro — Nhận diện";
             Load += Form3_Load;
             panelTop.ResumeLayout(false);
             panelBottom.ResumeLayout(false);

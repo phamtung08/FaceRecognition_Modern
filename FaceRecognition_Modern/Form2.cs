@@ -17,7 +17,7 @@ namespace FaceRecognition_Modern
         {
             var btn = new System.Windows.Forms.Button
             {
-                Text = "Quay lai Form1",
+                Text = "Quay Lại",
                 Location = new System.Drawing.Point(16, 56),
                 Size = new System.Drawing.Size(552, 30),
                 Font = new System.Drawing.Font("Segoe UI", 9f),
@@ -45,22 +45,22 @@ namespace FaceRecognition_Modern
 
             if (!Directory.Exists(datasetDir))
             {
-                MessageBox.Show("Chua co thu muc dataset!\nHay chup anh o Form1 truoc.",
-                    "Thieu dataset", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Chưa có mục dataset!\nHãy chụp hình ở Form1 trước.",
+                    "Thiếu dataset", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             var personDirs = Directory.GetDirectories(datasetDir);
             if (personDirs.Length < 2)
             {
-                MessageBox.Show("Can it nhat 2 nguoi trong dataset de train!",
+                MessageBox.Show("Cần ít nhất 2 người trong dataset để train!",
                     "Khong du du lieu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             btnTrain.Enabled = false;
             listLog.Items.Clear();
-            listLog.Items.Add("Bat dau train...");
+            listLog.Items.Add("Bắt đầu train...");
             progressBar.Value = 0;
 
             Task.Run(() =>
@@ -106,14 +106,14 @@ namespace FaceRecognition_Modern
                     {
                         this.Invoke(new Action(() =>
                         {
-                            listLog.Items.Add("LOI: Khong du anh de train!");
+                            listLog.Items.Add("LOI: Không đủ ảnh để train!");
                             btnTrain.Enabled = true;
                         }));
                         return;
                     }
 
                     this.Invoke(new Action(() =>
-                        listLog.Items.Add($"Dang train EigenFaceRecognizer voi {images.Count} anh...")));
+                        listLog.Items.Add($"Đang train EigenFaceRecognizer voi {images.Count} anh...")));
 
                     var recognizer = new EigenFaceRecognizer();
                     using var vecMats = new VectorOfMat(images.ToArray());
@@ -129,25 +129,30 @@ namespace FaceRecognition_Modern
                     this.Invoke(new Action(() =>
                     {
                         progressBar.Value = 100;
-                        listLog.Items.Add($"THANH CONG! {images.Count} anh | {labelToName.Count} nguoi");
-                        listLog.Items.Add($"Model luu tai: {modelPath}");
+                        listLog.Items.Add($"THÀNH CÔNG! {images.Count} anh | {labelToName.Count} nguoi");
+                        listLog.Items.Add($"Model lưu tại: {modelPath}");
                         btnTrain.Enabled = true;
                         MessageBox.Show(
-                            $"Train thanh cong!\n{images.Count} anh | {labelToName.Count} nguoi",
-                            "Thanh cong", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            $"Train thành công!\n{images.Count} ảnh | {labelToName.Count} người",
+                            "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }));
                 }
                 catch (Exception ex)
                 {
                     this.Invoke(new Action(() =>
                     {
-                        listLog.Items.Add("LOI: " + ex.Message);
+                        listLog.Items.Add("LỖI: " + ex.Message);
                         btnTrain.Enabled = true;
-                        MessageBox.Show("Loi train:\n" + ex.Message, "Loi",
+                        MessageBox.Show("Lỗi train:\n" + ex.Message, "Lỗi",
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }));
                 }
             });
+        }
+
+        private void lblInfo_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -64,7 +64,7 @@
             this.panelTop.BackColor = System.Drawing.Color.FromArgb(21, 101, 192);
             this.panelTop.Padding = new System.Windows.Forms.Padding(16, 0, 16, 0);
 
-            this.lblTitle.Text = "  Quan ly Tai khoan";
+            this.lblTitle.Text = "Quản lý tài khoản";
             this.lblTitle.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblTitle.Width = 260;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 12f, System.Drawing.FontStyle.Bold);
@@ -86,7 +86,7 @@
             this.panelRight.BackColor = System.Drawing.Color.FromArgb(245, 245, 245);
 
             // Header form nhập
-            this.lblFormHeader.Text = "THONG TIN TAI KHOAN";
+            this.lblFormHeader.Text = "THÔNG TIN TÀI KHOẢN";
             this.lblFormHeader.Location = new System.Drawing.Point(0, 0);
             this.lblFormHeader.Size = new System.Drawing.Size(290, 36);
             this.lblFormHeader.Font = new System.Drawing.Font("Segoe UI", 8.5f, System.Drawing.FontStyle.Bold);
@@ -140,7 +140,7 @@
             this.cboRole.SelectedIndex = 0;
 
             // btnAdd
-            this.btnAdd.Text = "Them tai khoan";
+            this.btnAdd.Text = "Thêm tài khoản";
             this.btnAdd.Location = new System.Drawing.Point(16, 256);
             this.btnAdd.Size = new System.Drawing.Size(258, 36);
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 9f, System.Drawing.FontStyle.Bold);
@@ -152,7 +152,7 @@
             this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
 
             // btnChangePass
-            this.btnChangePass.Text = "Doi mat khau";
+            this.btnChangePass.Text = "Đổi mật khẩu";
             this.btnChangePass.Location = new System.Drawing.Point(16, 302);
             this.btnChangePass.Size = new System.Drawing.Size(258, 36);
             this.btnChangePass.Font = new System.Drawing.Font("Segoe UI", 9f, System.Drawing.FontStyle.Bold);
@@ -164,7 +164,7 @@
             this.btnChangePass.Click += new System.EventHandler(this.BtnChangePass_Click);
 
             // btnDelete
-            this.btnDelete.Text = "Xoa tai khoan da chon";
+            this.btnDelete.Text = "Xóa tài khoản đã chọn";
             this.btnDelete.Location = new System.Drawing.Point(16, 348);
             this.btnDelete.Size = new System.Drawing.Size(258, 36);
             this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 9f, System.Drawing.FontStyle.Bold);
@@ -191,14 +191,14 @@
             this.panelLeft.BackColor = System.Drawing.Color.White;
             this.panelLeft.Padding = new System.Windows.Forms.Padding(12, 10, 12, 0);
 
-            this.lblTableHeader.Text = "DANH SACH TAI KHOAN";
+            this.lblTableHeader.Text = "DANH SÁCH TÀI KHOẢN";
             this.lblTableHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblTableHeader.Height = 28;
             this.lblTableHeader.Font = new System.Drawing.Font("Segoe UI", 9f, System.Drawing.FontStyle.Bold);
             this.lblTableHeader.ForeColor = System.Drawing.Color.FromArgb(21, 101, 192);
             this.lblTableHeader.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 
-            this.lblTotal.Text = "Tong: 0 tai khoan";
+            this.lblTotal.Text = "Tổng: 0 tài khoản";
             this.lblTotal.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lblTotal.Height = 24;
             this.lblTotal.Font = new System.Drawing.Font("Segoe UI", 8.5f);
@@ -244,7 +244,7 @@
             this.panelBottom.BackColor = System.Drawing.Color.FromArgb(245, 245, 245);
             this.panelBottom.Padding = new System.Windows.Forms.Padding(12, 8, 12, 8);
 
-            this.btnBack.Text = "Quay lai Form1";
+            this.btnBack.Text = "Quay lại";
             this.btnBack.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnBack.Width = 130;
             this.btnBack.Font = new System.Drawing.Font("Segoe UI", 9f, System.Drawing.FontStyle.Bold);
@@ -264,7 +264,7 @@
             this.MinimumSize = new System.Drawing.Size(700, 460);
             this.BackColor = System.Drawing.Color.White;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FaceRecognition Pro — Quan ly tai khoan";
+            this.Text = "FaceRecognition Pro — Quản lý tài khoản";
             this.Load += new System.EventHandler(this.FormQuanLyTaiKhoan_Load);
 
             this.Controls.Add(this.panelLeft);

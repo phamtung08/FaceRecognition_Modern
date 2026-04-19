@@ -12,7 +12,7 @@
         {
             var btn = new System.Windows.Forms.Button
             {
-                Text = "<- Quay lai",
+                Text = "<- Quay lại",
                 Dock = System.Windows.Forms.DockStyle.Bottom,
                 Height = 36,
                 Font = new System.Drawing.Font("Segoe UI", 9f),
@@ -28,7 +28,7 @@
 
         private void FormQuanLyTaiKhoan_Load(object sender, EventArgs e)
         {
-            lblCurrentUser.Text = $"Dang nhap: {UserSession.Username} (Admin)";
+            lblCurrentUser.Text = $"Đăng nhập: {UserSession.Username} (Admin)";
             LoadAccounts();
 
             // Mac dinh: o trang them moi
@@ -45,7 +45,7 @@
             {
                 dataGrid.Rows.Add(i++, acc.Id, acc.Username, acc.Role);
             }
-            lblTotal.Text = $"Tong: {accounts.Count} tai khoan";
+            lblTotal.Text = $"Tổng: {accounts.Count} tài khoản";
         }
 
         // ── Them tai khoan ────────────────────────────────────────────────────
@@ -57,8 +57,8 @@
 
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                MessageBox.Show("Vui long nhap day du Username va Password!",
-                    "Thieu thong tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng nhập đầy đủ Username và Password!",
+                    "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -68,7 +68,7 @@
             bool ok = DatabaseHelper.AddAccount(username, password, role);
             if (ok)
             {
-                MessageBox.Show($"Them tai khoan '{username}' thanh cong!",
+                MessageBox.Show($"Thêm tài khoản '{username}' thành công!",
                     "Thanh cong", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtUsername.Clear();
                 txtPassword.Clear();
@@ -76,8 +76,8 @@
             }
             else
             {
-                MessageBox.Show($"Them that bai!\nTen '{username}' co the da ton tai.",
-                    "Loi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Thêm thất bại!\nTên '{username}' có thể đã tồn tại.",
+                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -86,8 +86,8 @@
         {
             if (dataGrid.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Hay chon tai khoan can xoa!",
-                    "Chua chon", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Hãy chọn tài khoản cần xóa!",
+                    "Chưa chọn", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -98,27 +98,27 @@
             // Khong cho xoa chinh minh
             if (uname == UserSession.Username)
             {
-                MessageBox.Show("Khong the xoa tai khoan dang dang nhap!",
-                    "Khong cho phep", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Không thể xóa tài khoản đang đăng nhập!",
+                    "Không cho phép", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             var confirm = MessageBox.Show(
-                $"Xoa tai khoan '{uname}'?",
-                "Xac nhan", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                $"Xóa tài khoản '{uname}'?",
+                "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (confirm == DialogResult.Yes)
             {
                 bool ok = DatabaseHelper.DeleteAccount(id);
                 if (ok)
                 {
-                    MessageBox.Show("Xoa thanh cong!", "OK",
+                    MessageBox.Show("Xóa thành công!", "OK",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadAccounts();
                 }
                 else
                 {
-                    MessageBox.Show("Xoa that bai!", "Loi",
+                    MessageBox.Show("Xóa thất bại!", "Lỗi",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -129,8 +129,8 @@
         {
             if (dataGrid.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Hay chon tai khoan can doi mat khau!",
-                    "Chua chon", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Hãy chọn tài khoản cần đổi mật khẩu!",
+                    "Chưa chọn", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -141,21 +141,21 @@
 
             if (string.IsNullOrEmpty(newPass))
             {
-                MessageBox.Show("Nhap mat khau moi vao o Password!",
-                    "Thieu mat khau", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Nhập mật khẩu mới vào ô Password!",
+                    "Thiếu mật khẩu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             bool ok = DatabaseHelper.UpdatePassword(id, newPass);
             if (ok)
             {
-                MessageBox.Show($"Doi mat khau '{uname}' thanh cong!",
+                MessageBox.Show($"Dổi mật khẩu '{uname}' thành công!",
                     "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtPassword.Clear();
             }
             else
             {
-                MessageBox.Show("Doi mat khau that bai!", "Loi",
+                MessageBox.Show("Dổi mật khẩu thất bại!", "Lỗi",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

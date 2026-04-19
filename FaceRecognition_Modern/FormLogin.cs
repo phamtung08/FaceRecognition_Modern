@@ -21,13 +21,13 @@ namespace FaceRecognition_Modern
 
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                lblError.Text = "Vui long nhap day du thong tin!";
+                lblError.Text = "Vui lòng nhập đầy đủ thông tin!";
                 lblError.ForeColor = Color.FromArgb(255, 80, 80);
                 return;
             }
 
             btnLogin.Enabled = false;
-            lblError.Text = "Dang xac thuc...";
+            lblError.Text = "Đang xác thực...";
             lblError.ForeColor = Color.Gray;
 
             var (success, role) = DatabaseHelper.Login(username, password);
@@ -37,7 +37,7 @@ namespace FaceRecognition_Modern
                 UserSession.Username = username;
                 UserSession.Role = role;
 
-                lblError.Text = $"Dang nhap thanh cong! Role: {role}";
+                lblError.Text = $"Đăng nhập thành công! Role: {role}";
                 lblError.ForeColor = Color.FromArgb(0, 200, 100);
 
                 var form1 = new Form1();
@@ -52,7 +52,7 @@ namespace FaceRecognition_Modern
                         // Đăng xuất → hiện lại FormLogin
                         txtPassword.Clear();
                         btnLogin.Enabled = true;
-                        lblError.Text = "Da dang xuat. Vui long dang nhap lai.";
+                        lblError.Text = "Đã đăng xuất. Vui lòng đăng nhập lại.";
                         lblError.ForeColor = Color.FromArgb(255, 180, 0);
                         this.Show();
                     }
@@ -65,7 +65,7 @@ namespace FaceRecognition_Modern
             }
             else
             {
-                lblError.Text = "Sai ten dang nhap hoac mat khau!";
+                lblError.Text = "Sai tên đăng nhập hoặc mật khẩu!";
                 lblError.ForeColor = Color.FromArgb(255, 80, 80);
                 txtPassword.Clear();
                 txtPassword.Focus();
@@ -81,6 +81,11 @@ namespace FaceRecognition_Modern
                 return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void lblSubtitle_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

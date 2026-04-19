@@ -55,7 +55,7 @@
             this.lblAppName.ForeColor = System.Drawing.Color.White;
             this.lblAppName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 
-            this.lblSubtitle.Text = "He thong Nhan dien & Diem danh Khuon mat";
+            this.lblSubtitle.Text = "Hệ thống nhận diện & Điểm danh khuôn mặt";
             this.lblSubtitle.Location = new System.Drawing.Point(0, 52);
             this.lblSubtitle.Size = new System.Drawing.Size(400, 26);
             this.lblSubtitle.Font = new System.Drawing.Font("Segoe UI", 9f);
@@ -71,7 +71,7 @@
             this.panelForm.BackColor = System.Drawing.Color.White;
 
             // lblUsernameHint
-            this.lblUsernameHint.Text = "Ten dang nhap";
+            this.lblUsernameHint.Text = "Tên đăng nhập";
             this.lblUsernameHint.Location = new System.Drawing.Point(40, 30);
             this.lblUsernameHint.Size = new System.Drawing.Size(320, 18);
             this.lblUsernameHint.Font = new System.Drawing.Font("Segoe UI", 8.5f, System.Drawing.FontStyle.Bold);
@@ -87,7 +87,7 @@
             this.txtUsername.Text = "admin";
 
             // lblPasswordHint
-            this.lblPasswordHint.Text = "Mat khau";
+            this.lblPasswordHint.Text = "Mật khẩu";
             this.lblPasswordHint.Location = new System.Drawing.Point(40, 96);
             this.lblPasswordHint.Size = new System.Drawing.Size(320, 18);
             this.lblPasswordHint.Font = new System.Drawing.Font("Segoe UI", 8.5f, System.Drawing.FontStyle.Bold);
@@ -103,7 +103,7 @@
             this.txtPassword.PasswordChar = '●';
 
             // btnLogin
-            this.btnLogin.Text = "DANG NHAP";
+            this.btnLogin.Text = "ĐĂNG NHẬP";
             this.btnLogin.Location = new System.Drawing.Point(40, 168);
             this.btnLogin.Size = new System.Drawing.Size(320, 40);
             this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 10f, System.Drawing.FontStyle.Bold);
@@ -123,7 +123,7 @@
             this.lblError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 
             // lblDefaultHint
-            this.lblDefaultHint.Text = "Mac dinh: admin / admin123";
+            this.lblDefaultHint.Text = "Mặc định: admin";
             this.lblDefaultHint.Location = new System.Drawing.Point(40, 252);
             this.lblDefaultHint.Size = new System.Drawing.Size(320, 18);
             this.lblDefaultHint.Font = new System.Drawing.Font("Segoe UI", 8f);
@@ -154,7 +154,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FaceRecognition Pro — Dang nhap";
+            this.Text = "FaceRecognition Pro — đăng nhập";
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.panelForm);
             this.Controls.Add(this.lblVersion);

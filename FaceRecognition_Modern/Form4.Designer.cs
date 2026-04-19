@@ -34,247 +34,410 @@
 
         private void InitializeComponent()
         {
-            this.panelTop = new System.Windows.Forms.Panel();
-            this.panelLeft = new System.Windows.Forms.Panel();
-            this.panelRight = new System.Windows.Forms.Panel();
-            this.panelBottom = new System.Windows.Forms.Panel();
-            this.picCamera = new System.Windows.Forms.PictureBox();
-            this.btnStart = new System.Windows.Forms.Button();
-            this.btnStop = new System.Windows.Forms.Button();
-            this.btnRefresh = new System.Windows.Forms.Button();
-            this.btnExport = new System.Windows.Forms.Button();
-            this.btnClear = new System.Windows.Forms.Button();
-            this.btnBack = new System.Windows.Forms.Button();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.lblDate = new System.Windows.Forms.Label();
-            this.lblModelStatus = new System.Windows.Forms.Label();
-            this.lblDbStatus = new System.Windows.Forms.Label();
-            this.lblCameraStatus = new System.Windows.Forms.Label();
-            this.lblFaceCount = new System.Windows.Forms.Label();
-            this.lblTableHeader = new System.Windows.Forms.Label();
-            this.lblTotal = new System.Windows.Forms.Label();
-            this.dataGrid = new System.Windows.Forms.DataGridView();
-
-            ((System.ComponentModel.ISupportInitialize)(this.picCamera)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
-            this.SuspendLayout();
-
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            panelTop = new Panel();
+            lblModelStatus = new Label();
+            lblDbStatus = new Label();
+            lblTitle = new Label();
+            lblDate = new Label();
+            panelLeft = new Panel();
+            picCamera = new PictureBox();
+            panelRight = new Panel();
+            dataGrid = new DataGridView();
+            lblTotal = new Label();
+            lblTableHeader = new Label();
+            panelBottom = new Panel();
+            lblCameraStatus = new Label();
+            lblFaceCount = new Label();
+            btnRefresh = new Button();
+            btnStop = new Button();
+            btnStart = new Button();
+            btnClear = new Button();
+            btnExport = new Button();
+            btnBack = new Button();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
+            panelTop.SuspendLayout();
+            panelLeft.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picCamera).BeginInit();
+            panelRight.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGrid).BeginInit();
+            panelBottom.SuspendLayout();
+            SuspendLayout();
+            // 
             // panelTop
-            this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelTop.Height = 48;
-            this.panelTop.BackColor = System.Drawing.Color.FromArgb(21, 101, 192);
-            this.panelTop.Padding = new System.Windows.Forms.Padding(12, 0, 12, 0);
-
-            this.lblTitle.Text = "  He thong Diem Danh";
-            this.lblTitle.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblTitle.Width = 240;
-            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 11f, System.Drawing.FontStyle.Bold);
-            this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-
-            this.lblDbStatus.Text = "DB: Dang ket noi...";
-            this.lblDbStatus.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblDbStatus.Width = 160;
-            this.lblDbStatus.Font = new System.Drawing.Font("Segoe UI", 8.5f);
-            this.lblDbStatus.ForeColor = System.Drawing.Color.FromArgb(187, 222, 251);
-            this.lblDbStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-
-            this.lblModelStatus.Text = "Model: chua load";
-            this.lblModelStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblModelStatus.Font = new System.Drawing.Font("Segoe UI", 8.5f);
-            this.lblModelStatus.ForeColor = System.Drawing.Color.FromArgb(187, 222, 251);
-            this.lblModelStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-
-            this.lblDate.Text = "Ngay: ";
-            this.lblDate.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lblDate.Width = 140;
-            this.lblDate.Font = new System.Drawing.Font("Segoe UI", 9f, System.Drawing.FontStyle.Bold);
-            this.lblDate.ForeColor = System.Drawing.Color.White;
-            this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-
-            this.panelTop.Controls.Add(this.lblModelStatus);
-            this.panelTop.Controls.Add(this.lblDbStatus);
-            this.panelTop.Controls.Add(this.lblTitle);
-            this.panelTop.Controls.Add(this.lblDate);
-
+            // 
+            panelTop.BackColor = Color.FromArgb(21, 101, 192);
+            panelTop.Controls.Add(lblModelStatus);
+            panelTop.Controls.Add(lblDbStatus);
+            panelTop.Controls.Add(lblTitle);
+            panelTop.Controls.Add(lblDate);
+            panelTop.Dock = DockStyle.Top;
+            panelTop.Location = new Point(0, 0);
+            panelTop.Name = "panelTop";
+            panelTop.Padding = new Padding(12, 0, 12, 0);
+            panelTop.Size = new Size(980, 48);
+            panelTop.TabIndex = 3;
+            // 
+            // lblModelStatus
+            // 
+            lblModelStatus.Dock = DockStyle.Fill;
+            lblModelStatus.Font = new Font("Segoe UI", 8.5F);
+            lblModelStatus.ForeColor = Color.FromArgb(187, 222, 251);
+            lblModelStatus.Location = new Point(412, 0);
+            lblModelStatus.Name = "lblModelStatus";
+            lblModelStatus.Size = new Size(416, 48);
+            lblModelStatus.TabIndex = 0;
+            lblModelStatus.Text = "Model: chưa load";
+            lblModelStatus.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblDbStatus
+            // 
+            lblDbStatus.Dock = DockStyle.Left;
+            lblDbStatus.Font = new Font("Segoe UI", 8.5F);
+            lblDbStatus.ForeColor = Color.FromArgb(187, 222, 251);
+            lblDbStatus.Location = new Point(252, 0);
+            lblDbStatus.Name = "lblDbStatus";
+            lblDbStatus.Size = new Size(160, 48);
+            lblDbStatus.TabIndex = 1;
+            lblDbStatus.Text = "DB: Đang kết nối...";
+            lblDbStatus.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblTitle
+            // 
+            lblTitle.Dock = DockStyle.Left;
+            lblTitle.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.White;
+            lblTitle.Location = new Point(12, 0);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(240, 48);
+            lblTitle.TabIndex = 2;
+            lblTitle.Text = "  Hệ Thống Điểm Danh";
+            lblTitle.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblDate
+            // 
+            lblDate.Dock = DockStyle.Right;
+            lblDate.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblDate.ForeColor = Color.White;
+            lblDate.Location = new Point(828, 0);
+            lblDate.Name = "lblDate";
+            lblDate.Size = new Size(140, 48);
+            lblDate.TabIndex = 3;
+            lblDate.Text = "Ngày: ";
+            lblDate.TextAlign = ContentAlignment.MiddleRight;
+            // 
             // panelLeft
-            this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelLeft.Width = 560;
-            this.panelLeft.BackColor = System.Drawing.Color.FromArgb(33, 33, 33);
-            this.panelLeft.Padding = new System.Windows.Forms.Padding(8);
-
-            this.picCamera.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picCamera.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picCamera.BackColor = System.Drawing.Color.FromArgb(33, 33, 33);
-            this.picCamera.TabStop = false;
-            this.panelLeft.Controls.Add(this.picCamera);
-
+            // 
+            panelLeft.BackColor = Color.FromArgb(33, 33, 33);
+            panelLeft.Controls.Add(picCamera);
+            panelLeft.Dock = DockStyle.Left;
+            panelLeft.Location = new Point(0, 48);
+            panelLeft.Name = "panelLeft";
+            panelLeft.Padding = new Padding(8);
+            panelLeft.Size = new Size(560, 540);
+            panelLeft.TabIndex = 1;
+            // 
+            // picCamera
+            // 
+            picCamera.BackColor = Color.FromArgb(33, 33, 33);
+            picCamera.Dock = DockStyle.Fill;
+            picCamera.Location = new Point(8, 8);
+            picCamera.Name = "picCamera";
+            picCamera.Size = new Size(544, 524);
+            picCamera.SizeMode = PictureBoxSizeMode.Zoom;
+            picCamera.TabIndex = 0;
+            picCamera.TabStop = false;
+            // 
             // panelRight
-            this.panelRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelRight.BackColor = System.Drawing.Color.White;
-            this.panelRight.Padding = new System.Windows.Forms.Padding(12, 10, 12, 0);
-
-            this.lblTableHeader.Text = "DANH SACH DIEM DANH HOM NAY";
-            this.lblTableHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblTableHeader.Height = 30;
-            this.lblTableHeader.Font = new System.Drawing.Font("Segoe UI", 9f, System.Drawing.FontStyle.Bold);
-            this.lblTableHeader.ForeColor = System.Drawing.Color.FromArgb(21, 101, 192);
-            this.lblTableHeader.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-
-            this.lblTotal.Text = "Tong: 0 nguoi";
-            this.lblTotal.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblTotal.Height = 24;
-            this.lblTotal.Font = new System.Drawing.Font("Segoe UI", 8.5f);
-            this.lblTotal.ForeColor = System.Drawing.Color.FromArgb(96, 125, 139);
-            this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-
-            // DataGridView — light theme
-            this.dataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGrid.BackgroundColor = System.Drawing.Color.White;
-            this.dataGrid.GridColor = System.Drawing.Color.FromArgb(224, 224, 224);
-            this.dataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGrid.RowHeadersVisible = false;
-            this.dataGrid.AllowUserToAddRows = false;
-            this.dataGrid.ReadOnly = true;
-            this.dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGrid.Font = new System.Drawing.Font("Segoe UI", 9f);
-            this.dataGrid.DefaultCellStyle.BackColor = System.Drawing.Color.White;
-            this.dataGrid.DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(33, 33, 33);
-            this.dataGrid.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(227, 242, 253);
-            this.dataGrid.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.FromArgb(21, 101, 192);
-            this.dataGrid.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(250, 250, 250);
-            this.dataGrid.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(21, 101, 192);
-            this.dataGrid.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.White;
-            this.dataGrid.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 9f, System.Drawing.FontStyle.Bold);
-            this.dataGrid.ColumnHeadersHeight = 34;
-            this.dataGrid.EnableHeadersVisualStyles = false;
-            this.dataGrid.RowTemplate.Height = 28;
-
-            this.dataGrid.Columns.Add(new System.Windows.Forms.DataGridViewTextBoxColumn { HeaderText = "STT", Width = 44 });
-            this.dataGrid.Columns.Add(new System.Windows.Forms.DataGridViewTextBoxColumn { HeaderText = "Ho ten", Width = 130 });
-            this.dataGrid.Columns.Add(new System.Windows.Forms.DataGridViewTextBoxColumn { HeaderText = "Ngay", Width = 86 });
-            this.dataGrid.Columns.Add(new System.Windows.Forms.DataGridViewTextBoxColumn { HeaderText = "Gio vao", Width = 72 });
-            this.dataGrid.Columns.Add(new System.Windows.Forms.DataGridViewTextBoxColumn { HeaderText = "Trang thai", Width = 80 });
-
-            this.panelRight.Controls.Add(this.dataGrid);
-            this.panelRight.Controls.Add(this.lblTotal);
-            this.panelRight.Controls.Add(this.lblTableHeader);
-
+            // 
+            panelRight.BackColor = Color.White;
+            panelRight.Controls.Add(dataGrid);
+            panelRight.Controls.Add(lblTotal);
+            panelRight.Controls.Add(lblTableHeader);
+            panelRight.Dock = DockStyle.Fill;
+            panelRight.Location = new Point(560, 48);
+            panelRight.Name = "panelRight";
+            panelRight.Padding = new Padding(12, 10, 12, 0);
+            panelRight.Size = new Size(420, 540);
+            panelRight.TabIndex = 0;
+            // 
+            // dataGrid
+            // 
+            dataGrid.AllowUserToAddRows = false;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(250, 250, 250);
+            dataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGrid.BackgroundColor = Color.White;
+            dataGrid.BorderStyle = BorderStyle.None;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(21, 101, 192);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGrid.ColumnHeadersHeight = 34;
+            dataGrid.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5 });
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(33, 33, 33);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(227, 242, 253);
+            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(21, 101, 192);
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dataGrid.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGrid.Dock = DockStyle.Fill;
+            dataGrid.EnableHeadersVisualStyles = false;
+            dataGrid.Font = new Font("Segoe UI", 9F);
+            dataGrid.GridColor = Color.FromArgb(224, 224, 224);
+            dataGrid.Location = new Point(12, 40);
+            dataGrid.Name = "dataGrid";
+            dataGrid.ReadOnly = true;
+            dataGrid.RowHeadersVisible = false;
+            dataGrid.RowHeadersWidth = 51;
+            dataGrid.RowTemplate.Height = 28;
+            dataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGrid.Size = new Size(396, 476);
+            dataGrid.TabIndex = 0;
+            // 
+            // lblTotal
+            // 
+            lblTotal.Dock = DockStyle.Bottom;
+            lblTotal.Font = new Font("Segoe UI", 8.5F);
+            lblTotal.ForeColor = Color.FromArgb(96, 125, 139);
+            lblTotal.Location = new Point(12, 516);
+            lblTotal.Name = "lblTotal";
+            lblTotal.Size = new Size(396, 24);
+            lblTotal.TabIndex = 1;
+            lblTotal.Text = "Tổng: 0 người";
+            lblTotal.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblTableHeader
+            // 
+            lblTableHeader.Dock = DockStyle.Top;
+            lblTableHeader.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblTableHeader.ForeColor = Color.FromArgb(21, 101, 192);
+            lblTableHeader.Location = new Point(12, 10);
+            lblTableHeader.Name = "lblTableHeader";
+            lblTableHeader.Size = new Size(396, 30);
+            lblTableHeader.TabIndex = 2;
+            lblTableHeader.Text = "DANH SÁCH DIỂM DANH HÔM NAY";
+            lblTableHeader.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // panelBottom
-            this.panelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelBottom.Height = 52;
-            this.panelBottom.BackColor = System.Drawing.Color.FromArgb(245, 245, 245);
-            this.panelBottom.Padding = new System.Windows.Forms.Padding(10, 9, 10, 9);
-
-            this.btnStart.Text = "Start Diem danh";
-            this.btnStart.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnStart.Width = 140;
-            this.btnStart.Font = new System.Drawing.Font("Segoe UI", 9f, System.Drawing.FontStyle.Bold);
-            this.btnStart.BackColor = System.Drawing.Color.FromArgb(46, 125, 50);
-            this.btnStart.ForeColor = System.Drawing.Color.White;
-            this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStart.FlatAppearance.BorderSize = 0;
-            this.btnStart.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnStart.Click += new System.EventHandler(this.BtnStart_Click);
-
-            this.btnStop.Text = "Dung";
-            this.btnStop.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnStop.Width = 80;
-            this.btnStop.Font = new System.Drawing.Font("Segoe UI", 9f, System.Drawing.FontStyle.Bold);
-            this.btnStop.BackColor = System.Drawing.Color.FromArgb(211, 47, 47);
-            this.btnStop.ForeColor = System.Drawing.Color.White;
-            this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStop.FlatAppearance.BorderSize = 0;
-            this.btnStop.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnStop.Click += new System.EventHandler(this.BtnStop_Click);
-
-            this.btnRefresh.Text = "Lam moi";
-            this.btnRefresh.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnRefresh.Width = 90;
-            this.btnRefresh.Font = new System.Drawing.Font("Segoe UI", 9f, System.Drawing.FontStyle.Bold);
-            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(21, 101, 192);
-            this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefresh.FlatAppearance.BorderSize = 0;
-            this.btnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRefresh.Click += new System.EventHandler(this.BtnRefresh_Click);
-
-            this.btnExport.Text = "Xuat CSV";
-            this.btnExport.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnExport.Width = 90;
-            this.btnExport.Font = new System.Drawing.Font("Segoe UI", 9f, System.Drawing.FontStyle.Bold);
-            this.btnExport.BackColor = System.Drawing.Color.FromArgb(2, 119, 189);
-            this.btnExport.ForeColor = System.Drawing.Color.White;
-            this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExport.FlatAppearance.BorderSize = 0;
-            this.btnExport.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
-
-            this.btnClear.Text = "Xoa hom nay";
-            this.btnClear.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnClear.Width = 100;
-            this.btnClear.Font = new System.Drawing.Font("Segoe UI", 9f, System.Drawing.FontStyle.Bold);
-            this.btnClear.BackColor = System.Drawing.Color.FromArgb(144, 164, 174);
-            this.btnClear.ForeColor = System.Drawing.Color.White;
-            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClear.FlatAppearance.BorderSize = 0;
-            this.btnClear.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
-
-            this.btnBack.Text = "Quay lai";
-            this.btnBack.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnBack.Width = 90;
-            this.btnBack.Font = new System.Drawing.Font("Segoe UI", 9f, System.Drawing.FontStyle.Bold);
-            this.btnBack.BackColor = System.Drawing.Color.FromArgb(96, 125, 139);
-            this.btnBack.ForeColor = System.Drawing.Color.White;
-            this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBack.FlatAppearance.BorderSize = 0;
-            this.btnBack.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBack.Click += new System.EventHandler(this.BtnBack_Click);
-
-            this.btnStop.Enabled = false;
-
-            this.lblCameraStatus.Text = "Chua bat dau";
-            this.lblCameraStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblCameraStatus.Font = new System.Drawing.Font("Segoe UI", 9f);
-            this.lblCameraStatus.ForeColor = System.Drawing.Color.FromArgb(117, 117, 117);
-            this.lblCameraStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-
-            this.lblFaceCount.Text = "";
-            this.lblFaceCount.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblFaceCount.Width = 200;
-            this.lblFaceCount.Font = new System.Drawing.Font("Segoe UI", 8.5f);
-            this.lblFaceCount.ForeColor = System.Drawing.Color.FromArgb(96, 125, 139);
-            this.lblFaceCount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblFaceCount.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-
-            this.panelBottom.Controls.Add(this.lblCameraStatus);
-            this.panelBottom.Controls.Add(this.lblFaceCount);
-            this.panelBottom.Controls.Add(this.btnRefresh);
-            this.panelBottom.Controls.Add(this.btnStop);
-            this.panelBottom.Controls.Add(this.btnStart);
-            this.panelBottom.Controls.Add(this.btnClear);
-            this.panelBottom.Controls.Add(this.btnExport);
-            this.panelBottom.Controls.Add(this.btnBack);
-
+            // 
+            panelBottom.BackColor = Color.FromArgb(245, 245, 245);
+            panelBottom.Controls.Add(lblCameraStatus);
+            panelBottom.Controls.Add(lblFaceCount);
+            panelBottom.Controls.Add(btnRefresh);
+            panelBottom.Controls.Add(btnStop);
+            panelBottom.Controls.Add(btnStart);
+            panelBottom.Controls.Add(btnClear);
+            panelBottom.Controls.Add(btnExport);
+            panelBottom.Controls.Add(btnBack);
+            panelBottom.Dock = DockStyle.Bottom;
+            panelBottom.Location = new Point(0, 588);
+            panelBottom.Name = "panelBottom";
+            panelBottom.Padding = new Padding(10, 9, 10, 9);
+            panelBottom.Size = new Size(980, 52);
+            panelBottom.TabIndex = 2;
+            // 
+            // lblCameraStatus
+            // 
+            lblCameraStatus.Dock = DockStyle.Fill;
+            lblCameraStatus.Font = new Font("Segoe UI", 9F);
+            lblCameraStatus.ForeColor = Color.FromArgb(117, 117, 117);
+            lblCameraStatus.Location = new Point(520, 9);
+            lblCameraStatus.Name = "lblCameraStatus";
+            lblCameraStatus.Size = new Size(158, 34);
+            lblCameraStatus.TabIndex = 0;
+            lblCameraStatus.Text = "Chưa bắt đầu";
+            lblCameraStatus.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblFaceCount
+            // 
+            lblFaceCount.Dock = DockStyle.Left;
+            lblFaceCount.Font = new Font("Segoe UI", 8.5F);
+            lblFaceCount.ForeColor = Color.FromArgb(96, 125, 139);
+            lblFaceCount.Location = new Point(320, 9);
+            lblFaceCount.Name = "lblFaceCount";
+            lblFaceCount.Padding = new Padding(8, 0, 0, 0);
+            lblFaceCount.Size = new Size(200, 34);
+            lblFaceCount.TabIndex = 1;
+            lblFaceCount.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // btnRefresh
+            // 
+            btnRefresh.BackColor = Color.FromArgb(21, 101, 192);
+            btnRefresh.Cursor = Cursors.Hand;
+            btnRefresh.Dock = DockStyle.Left;
+            btnRefresh.FlatAppearance.BorderSize = 0;
+            btnRefresh.FlatStyle = FlatStyle.Flat;
+            btnRefresh.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnRefresh.ForeColor = Color.White;
+            btnRefresh.Location = new Point(230, 9);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(90, 34);
+            btnRefresh.TabIndex = 2;
+            btnRefresh.Text = "Làm mới";
+            btnRefresh.UseVisualStyleBackColor = false;
+            btnRefresh.Click += BtnRefresh_Click;
+            // 
+            // btnStop
+            // 
+            btnStop.BackColor = Color.FromArgb(211, 47, 47);
+            btnStop.Cursor = Cursors.Hand;
+            btnStop.Dock = DockStyle.Left;
+            btnStop.Enabled = false;
+            btnStop.FlatAppearance.BorderSize = 0;
+            btnStop.FlatStyle = FlatStyle.Flat;
+            btnStop.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnStop.ForeColor = Color.White;
+            btnStop.Location = new Point(150, 9);
+            btnStop.Name = "btnStop";
+            btnStop.Size = new Size(80, 34);
+            btnStop.TabIndex = 3;
+            btnStop.Text = "Dừng";
+            btnStop.UseVisualStyleBackColor = false;
+            btnStop.Click += BtnStop_Click;
+            // 
+            // btnStart
+            // 
+            btnStart.BackColor = Color.FromArgb(46, 125, 50);
+            btnStart.Cursor = Cursors.Hand;
+            btnStart.Dock = DockStyle.Left;
+            btnStart.FlatAppearance.BorderSize = 0;
+            btnStart.FlatStyle = FlatStyle.Flat;
+            btnStart.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnStart.ForeColor = Color.White;
+            btnStart.Location = new Point(10, 9);
+            btnStart.Name = "btnStart";
+            btnStart.Size = new Size(140, 34);
+            btnStart.TabIndex = 4;
+            btnStart.Text = "Start Điểm danh";
+            btnStart.UseVisualStyleBackColor = false;
+            btnStart.Click += BtnStart_Click;
+            // 
+            // btnClear
+            // 
+            btnClear.BackColor = Color.FromArgb(144, 164, 174);
+            btnClear.Cursor = Cursors.Hand;
+            btnClear.Dock = DockStyle.Right;
+            btnClear.FlatAppearance.BorderSize = 0;
+            btnClear.FlatStyle = FlatStyle.Flat;
+            btnClear.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnClear.ForeColor = Color.White;
+            btnClear.Location = new Point(678, 9);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(112, 34);
+            btnClear.TabIndex = 5;
+            btnClear.Text = "Xóa hôm nay";
+            btnClear.UseVisualStyleBackColor = false;
+            btnClear.Click += BtnClear_Click;
+            // 
+            // btnExport
+            // 
+            btnExport.BackColor = Color.FromArgb(2, 119, 189);
+            btnExport.Cursor = Cursors.Hand;
+            btnExport.Dock = DockStyle.Right;
+            btnExport.FlatAppearance.BorderSize = 0;
+            btnExport.FlatStyle = FlatStyle.Flat;
+            btnExport.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnExport.ForeColor = Color.White;
+            btnExport.Location = new Point(790, 9);
+            btnExport.Name = "btnExport";
+            btnExport.Size = new Size(90, 34);
+            btnExport.TabIndex = 6;
+            btnExport.Text = "Xuất CSV";
+            btnExport.UseVisualStyleBackColor = false;
+            btnExport.Click += BtnExport_Click;
+            // 
+            // btnBack
+            // 
+            btnBack.BackColor = Color.FromArgb(96, 125, 139);
+            btnBack.Cursor = Cursors.Hand;
+            btnBack.Dock = DockStyle.Right;
+            btnBack.FlatAppearance.BorderSize = 0;
+            btnBack.FlatStyle = FlatStyle.Flat;
+            btnBack.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnBack.ForeColor = Color.White;
+            btnBack.Location = new Point(880, 9);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(90, 34);
+            btnBack.TabIndex = 7;
+            btnBack.Text = "Quay lại ";
+            btnBack.UseVisualStyleBackColor = false;
+            btnBack.Click += BtnBack_Click;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.ReadOnly = true;
+            dataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            dataGridViewTextBoxColumn2.ReadOnly = true;
+            dataGridViewTextBoxColumn2.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            dataGridViewTextBoxColumn3.ReadOnly = true;
+            dataGridViewTextBoxColumn3.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            dataGridViewTextBoxColumn4.ReadOnly = true;
+            dataGridViewTextBoxColumn4.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            dataGridViewTextBoxColumn5.ReadOnly = true;
+            dataGridViewTextBoxColumn5.Width = 125;
+            // 
             // Form4
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(980, 640);
-            this.MinimumSize = new System.Drawing.Size(800, 500);
-            this.BackColor = System.Drawing.Color.White;
-            this.Text = "FaceRecognition Pro — Diem danh";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Load += new System.EventHandler(this.Form4_Load);
-
-            this.Controls.Add(this.panelRight);
-            this.Controls.Add(this.panelLeft);
-            this.Controls.Add(this.panelBottom);
-            this.Controls.Add(this.panelTop);
-
-            ((System.ComponentModel.ISupportInitialize)(this.picCamera)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
-            this.ResumeLayout(false);
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
+            ClientSize = new Size(980, 640);
+            Controls.Add(panelRight);
+            Controls.Add(panelLeft);
+            Controls.Add(panelBottom);
+            Controls.Add(panelTop);
+            MinimumSize = new Size(800, 500);
+            Name = "Form4";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "FaceRecognition Pro — Diem danh";
+            Load += Form4_Load;
+            panelTop.ResumeLayout(false);
+            panelLeft.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)picCamera).EndInit();
+            panelRight.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGrid).EndInit();
+            panelBottom.ResumeLayout(false);
+            ResumeLayout(false);
         }
+
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
     }
 }
